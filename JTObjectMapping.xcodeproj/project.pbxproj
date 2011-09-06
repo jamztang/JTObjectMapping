@@ -1,0 +1,489 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A7E71C61415F96700AE157A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C51415F96700AE157A /* UIKit.framework */; };
+		1A7E71C81415F96700AE157A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C71415F96700AE157A /* Foundation.framework */; };
+		1A7E71CA1415F96700AE157A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C91415F96700AE157A /* CoreGraphics.framework */; };
+		1A7E71D01415F96700AE157A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E71CE1415F96700AE157A /* InfoPlist.strings */; };
+		1A7E71D21415F96700AE157A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E71D11415F96700AE157A /* main.m */; };
+		1A7E71D61415F96800AE157A /* JTObjectMappingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E71D51415F96800AE157A /* JTObjectMappingAppDelegate.m */; };
+		1A7E71D91415F96800AE157A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E71D71415F96800AE157A /* MainWindow.xib */; };
+		1A7E71DC1415F96800AE157A /* JTObjectMappingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E71DB1415F96800AE157A /* JTObjectMappingViewController.m */; };
+		1A7E71DF1415F96800AE157A /* JTObjectMappingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E71DD1415F96800AE157A /* JTObjectMappingViewController.xib */; };
+		1A7E71E71415F96800AE157A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71E61415F96800AE157A /* SenTestingKit.framework */; };
+		1A7E71E81415F96800AE157A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C51415F96700AE157A /* UIKit.framework */; };
+		1A7E71E91415F96800AE157A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C71415F96700AE157A /* Foundation.framework */; };
+		1A7E71EA1415F96800AE157A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C91415F96700AE157A /* CoreGraphics.framework */; };
+		1A7E71F21415F96800AE157A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E71F01415F96800AE157A /* InfoPlist.strings */; };
+		1A7E71F41415F96800AE157A /* JTObjectMappingTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E71F31415F96800AE157A /* JTObjectMappingTests.h */; };
+		1A7E71F61415F96800AE157A /* JTObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E71F51415F96800AE157A /* JTObjectMappingTests.m */; };
+		1A7E72021415FA1500AE157A /* NSObject+JTObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E72011415FA1500AE157A /* NSObject+JTObjectMapping.m */; };
+		1A7E7208141602C900AE157A /* JTSocialNetworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E7207141602C900AE157A /* JTSocialNetworkTest.m */; };
+		1A7E720B141605B300AE157A /* JTMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E720A141605B300AE157A /* JTMappings.m */; };
+		1A7E720E141613C900AE157A /* JTUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E720D141613C800AE157A /* JTUserTest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A7E71EB1415F96800AE157A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A7E71B81415F96700AE157A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A7E71C01415F96700AE157A;
+			remoteInfo = JTObjectMapping;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A7E71C11415F96700AE157A /* JTObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A7E71C51415F96700AE157A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1A7E71C71415F96700AE157A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A7E71C91415F96700AE157A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1A7E71CD1415F96700AE157A /* JTObjectMapping-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTObjectMapping-Info.plist"; sourceTree = "<group>"; };
+		1A7E71CF1415F96700AE157A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A7E71D11415F96700AE157A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A7E71D31415F96800AE157A /* JTObjectMapping-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTObjectMapping-Prefix.pch"; sourceTree = "<group>"; };
+		1A7E71D41415F96800AE157A /* JTObjectMappingAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTObjectMappingAppDelegate.h; sourceTree = "<group>"; };
+		1A7E71D51415F96800AE157A /* JTObjectMappingAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTObjectMappingAppDelegate.m; sourceTree = "<group>"; };
+		1A7E71D81415F96800AE157A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		1A7E71DA1415F96800AE157A /* JTObjectMappingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTObjectMappingViewController.h; sourceTree = "<group>"; };
+		1A7E71DB1415F96800AE157A /* JTObjectMappingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTObjectMappingViewController.m; sourceTree = "<group>"; };
+		1A7E71DE1415F96800AE157A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JTObjectMappingViewController.xib; sourceTree = "<group>"; };
+		1A7E71E51415F96800AE157A /* JTObjectMappingTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JTObjectMappingTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A7E71E61415F96800AE157A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		1A7E71EF1415F96800AE157A /* JTObjectMappingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTObjectMappingTests-Info.plist"; sourceTree = "<group>"; };
+		1A7E71F11415F96800AE157A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A7E71F31415F96800AE157A /* JTObjectMappingTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTObjectMappingTests.h; sourceTree = "<group>"; };
+		1A7E71F51415F96800AE157A /* JTObjectMappingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTObjectMappingTests.m; sourceTree = "<group>"; };
+		1A7E72001415FA1500AE157A /* NSObject+JTObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JTObjectMapping.h"; sourceTree = "<group>"; };
+		1A7E72011415FA1500AE157A /* NSObject+JTObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JTObjectMapping.m"; sourceTree = "<group>"; };
+		1A7E7206141602C900AE157A /* JTSocialNetworkTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSocialNetworkTest.h; sourceTree = "<group>"; };
+		1A7E7207141602C900AE157A /* JTSocialNetworkTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSocialNetworkTest.m; sourceTree = "<group>"; };
+		1A7E7209141605B300AE157A /* JTMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTMappings.h; sourceTree = "<group>"; };
+		1A7E720A141605B300AE157A /* JTMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTMappings.m; sourceTree = "<group>"; };
+		1A7E720C141613C800AE157A /* JTUserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTUserTest.h; sourceTree = "<group>"; };
+		1A7E720D141613C800AE157A /* JTUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTUserTest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A7E71BE1415F96700AE157A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A7E71C61415F96700AE157A /* UIKit.framework in Frameworks */,
+				1A7E71C81415F96700AE157A /* Foundation.framework in Frameworks */,
+				1A7E71CA1415F96700AE157A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A7E71E11415F96800AE157A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A7E71E71415F96800AE157A /* SenTestingKit.framework in Frameworks */,
+				1A7E71E81415F96800AE157A /* UIKit.framework in Frameworks */,
+				1A7E71E91415F96800AE157A /* Foundation.framework in Frameworks */,
+				1A7E71EA1415F96800AE157A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A7E71B61415F96700AE157A = {
+			isa = PBXGroup;
+			children = (
+				1A7E71CB1415F96700AE157A /* JTObjectMapping */,
+				1A7E71ED1415F96800AE157A /* JTObjectMappingTests */,
+				1A7E71C41415F96700AE157A /* Frameworks */,
+				1A7E71C21415F96700AE157A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A7E71C21415F96700AE157A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E71C11415F96700AE157A /* JTObjectMapping.app */,
+				1A7E71E51415F96800AE157A /* JTObjectMappingTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A7E71C41415F96700AE157A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E71C51415F96700AE157A /* UIKit.framework */,
+				1A7E71C71415F96700AE157A /* Foundation.framework */,
+				1A7E71C91415F96700AE157A /* CoreGraphics.framework */,
+				1A7E71E61415F96800AE157A /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A7E71CB1415F96700AE157A /* JTObjectMapping */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E71FF1415F9D800AE157A /* Source */,
+				1A7E71D41415F96800AE157A /* JTObjectMappingAppDelegate.h */,
+				1A7E71D51415F96800AE157A /* JTObjectMappingAppDelegate.m */,
+				1A7E71D71415F96800AE157A /* MainWindow.xib */,
+				1A7E71DA1415F96800AE157A /* JTObjectMappingViewController.h */,
+				1A7E71DB1415F96800AE157A /* JTObjectMappingViewController.m */,
+				1A7E71DD1415F96800AE157A /* JTObjectMappingViewController.xib */,
+				1A7E71CC1415F96700AE157A /* Supporting Files */,
+			);
+			path = JTObjectMapping;
+			sourceTree = "<group>";
+		};
+		1A7E71CC1415F96700AE157A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E71CD1415F96700AE157A /* JTObjectMapping-Info.plist */,
+				1A7E71CE1415F96700AE157A /* InfoPlist.strings */,
+				1A7E71D11415F96700AE157A /* main.m */,
+				1A7E71D31415F96800AE157A /* JTObjectMapping-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A7E71ED1415F96800AE157A /* JTObjectMappingTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E71F31415F96800AE157A /* JTObjectMappingTests.h */,
+				1A7E71F51415F96800AE157A /* JTObjectMappingTests.m */,
+				1A7E71EE1415F96800AE157A /* Supporting Files */,
+				1A7E720C141613C800AE157A /* JTUserTest.h */,
+				1A7E720D141613C800AE157A /* JTUserTest.m */,
+				1A7E7206141602C900AE157A /* JTSocialNetworkTest.h */,
+				1A7E7207141602C900AE157A /* JTSocialNetworkTest.m */,
+			);
+			path = JTObjectMappingTests;
+			sourceTree = "<group>";
+		};
+		1A7E71EE1415F96800AE157A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E71EF1415F96800AE157A /* JTObjectMappingTests-Info.plist */,
+				1A7E71F01415F96800AE157A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A7E71FF1415F9D800AE157A /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1A7E72001415FA1500AE157A /* NSObject+JTObjectMapping.h */,
+				1A7E72011415FA1500AE157A /* NSObject+JTObjectMapping.m */,
+				1A7E7209141605B300AE157A /* JTMappings.h */,
+				1A7E720A141605B300AE157A /* JTMappings.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A7E71C01415F96700AE157A /* JTObjectMapping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A7E71F91415F96800AE157A /* Build configuration list for PBXNativeTarget "JTObjectMapping" */;
+			buildPhases = (
+				1A7E71BD1415F96700AE157A /* Sources */,
+				1A7E71BE1415F96700AE157A /* Frameworks */,
+				1A7E71BF1415F96700AE157A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JTObjectMapping;
+			productName = JTObjectMapping;
+			productReference = 1A7E71C11415F96700AE157A /* JTObjectMapping.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1A7E71E41415F96800AE157A /* JTObjectMappingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A7E71FC1415F96800AE157A /* Build configuration list for PBXNativeTarget "JTObjectMappingTests" */;
+			buildPhases = (
+				1A7E71E01415F96800AE157A /* Sources */,
+				1A7E71E11415F96800AE157A /* Frameworks */,
+				1A7E71E21415F96800AE157A /* Resources */,
+				1A7E71E31415F96800AE157A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A7E71EC1415F96800AE157A /* PBXTargetDependency */,
+			);
+			name = JTObjectMappingTests;
+			productName = JTObjectMappingTests;
+			productReference = 1A7E71E51415F96800AE157A /* JTObjectMappingTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A7E71B81415F96700AE157A /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1A7E71BB1415F96700AE157A /* Build configuration list for PBXProject "JTObjectMapping" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A7E71B61415F96700AE157A;
+			productRefGroup = 1A7E71C21415F96700AE157A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A7E71C01415F96700AE157A /* JTObjectMapping */,
+				1A7E71E41415F96800AE157A /* JTObjectMappingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A7E71BF1415F96700AE157A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A7E71D01415F96700AE157A /* InfoPlist.strings in Resources */,
+				1A7E71D91415F96800AE157A /* MainWindow.xib in Resources */,
+				1A7E71DF1415F96800AE157A /* JTObjectMappingViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A7E71E21415F96800AE157A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A7E71F21415F96800AE157A /* InfoPlist.strings in Resources */,
+				1A7E71F41415F96800AE157A /* JTObjectMappingTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A7E71E31415F96800AE157A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A7E71BD1415F96700AE157A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A7E71D21415F96700AE157A /* main.m in Sources */,
+				1A7E71D61415F96800AE157A /* JTObjectMappingAppDelegate.m in Sources */,
+				1A7E71DC1415F96800AE157A /* JTObjectMappingViewController.m in Sources */,
+				1A7E72021415FA1500AE157A /* NSObject+JTObjectMapping.m in Sources */,
+				1A7E7208141602C900AE157A /* JTSocialNetworkTest.m in Sources */,
+				1A7E720B141605B300AE157A /* JTMappings.m in Sources */,
+				1A7E720E141613C900AE157A /* JTUserTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A7E71E01415F96800AE157A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A7E71F61415F96800AE157A /* JTObjectMappingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A7E71EC1415F96800AE157A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A7E71C01415F96700AE157A /* JTObjectMapping */;
+			targetProxy = 1A7E71EB1415F96800AE157A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1A7E71CE1415F96700AE157A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A7E71CF1415F96700AE157A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1A7E71D71415F96800AE157A /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A7E71D81415F96800AE157A /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		1A7E71DD1415F96800AE157A /* JTObjectMappingViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A7E71DE1415F96800AE157A /* en */,
+			);
+			name = JTObjectMappingViewController.xib;
+			sourceTree = "<group>";
+		};
+		1A7E71F01415F96800AE157A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A7E71F11415F96800AE157A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A7E71F71415F96800AE157A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1A7E71F81415F96800AE157A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A7E71FA1415F96800AE157A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				INFOPLIST_FILE = "JTObjectMapping/JTObjectMapping-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1A7E71FB1415F96800AE157A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				INFOPLIST_FILE = "JTObjectMapping/JTObjectMapping-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1A7E71FD1415F96800AE157A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JTObjectMapping.app/JTObjectMapping";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				INFOPLIST_FILE = "JTObjectMappingTests/JTObjectMappingTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		1A7E71FE1415F96800AE157A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JTObjectMapping.app/JTObjectMapping";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				INFOPLIST_FILE = "JTObjectMappingTests/JTObjectMappingTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A7E71BB1415F96700AE157A /* Build configuration list for PBXProject "JTObjectMapping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A7E71F71415F96800AE157A /* Debug */,
+				1A7E71F81415F96800AE157A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A7E71F91415F96800AE157A /* Build configuration list for PBXNativeTarget "JTObjectMapping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A7E71FA1415F96800AE157A /* Debug */,
+				1A7E71FB1415F96800AE157A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1A7E71FC1415F96800AE157A /* Build configuration list for PBXNativeTarget "JTObjectMappingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A7E71FD1415F96800AE157A /* Debug */,
+				1A7E71FE1415F96800AE157A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A7E71B81415F96700AE157A /* Project object */;
+}
