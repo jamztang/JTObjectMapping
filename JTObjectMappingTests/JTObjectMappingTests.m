@@ -10,8 +10,6 @@
 #import "NSObject+JTObjectMapping.h"
 #import "JTUserTest.h"
 #import "JTSocialNetworkTest.h"
-#import "JTMappings.h"
-#import "JTDateMappings.h"
 
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
@@ -25,6 +23,10 @@
     self.json = [NSDictionary dictionaryWithObjectsAndKeys:
                  @"Bob", @"p_name",
                  @"Manager", @"p_title",
+                 [NSArray arrayWithObjects:
+                  @"Mary",
+                  @"James",
+                  nil], @"p_childs",
                  [NSNumber numberWithInt:30], @"p_age",
                  [NSNull null], @"p_null",          // Sometime [NSNull null] object would be returned from the JSON response
                  @"1970-01-01T00:00:00+0000", @"create_date",
@@ -39,14 +41,14 @@
                     @"title", @"p_title",
                     @"age", @"p_age",
                     @"null", @"p_null",
-                    [JTDateMappings mappingWithKey:@"createDate"
-                                  dateFormatString:@"yyyy-MM-dd'T'hh:mm:ssZ"], @"create_date",
-                    [JTMappings mappingWithKey:@"socialNetwork" 
-                                   targetClass:[JTSocialNetworkTest class]
-                                       mapping:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                @"twitterID", @"twitter",
-                                                @"facebookID", @"facebook",
-                                                nil]], @"social_networks",
+                    [NSArray mappingWithKey:@"childs"], @"p_childs",
+                    [NSDate mappingWithKey:@"createDate"
+                          dateFormatString:@"yyyy-MM-dd'T'hh:mm:ssZ"], @"create_date",
+                    [JTSocialNetworkTest mappingWithKey:@"socialNetwork"
+                                                mapping:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                         @"twitterID", @"twitter",
+                                                         @"facebookID", @"facebook",
+                                                         nil]], @"social_networks",
                     nil];
 
     self.object = [[[JTUserTest alloc] init] autorelease];
@@ -90,6 +92,12 @@
 
 - (void)testCreateDate {
     STAssertTrue([self.object.createDate isEqual:[NSDate dateWithTimeIntervalSince1970:0]], @"date %@ != %@", self.object.createDate, [NSDate dateWithTimeIntervalSince1970:0]);
+}
+
+- (void)testChilds {
+    STAssertTrue([self.object.childs count] == 2, @"Should have two childs", nil);
+    STAssertTrue([[self.object.childs objectAtIndex:0] isEqual:@"Mary"], @"%@ != Mary", [self.object.childs objectAtIndex:0]);
+    STAssertTrue([[self.object.childs objectAtIndex:1] isEqual:@"James"], @"%@ != James", [self.object.childs objectAtIndex:1]);
 }
 
 @end
