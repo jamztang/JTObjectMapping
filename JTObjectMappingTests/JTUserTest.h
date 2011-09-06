@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSNumber *age;
 @property (nonatomic, copy) NSString *null;
+@property (nonatomic, retain) NSDate *createDate;
 @property (nonatomic, retain) JTSocialNetworkTest *socialNetwork;
 
 @end

@@ -10,6 +10,7 @@
 
 @implementation JTUserTest
 @synthesize name, title, age, null;
+@synthesize createDate;
 @synthesize socialNetwork;
 
 @end

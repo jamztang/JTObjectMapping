@@ -1,4 +1,4 @@
-JTObjectMapping
+JTObjectMapping v1.0.1
 
 Inspired by RestKit. A very simple helper framework that maps a JSON response NSDictionary to an NSObject subclass.
 
@@ -6,8 +6,11 @@ Inspired by RestKit. A very simple helper framework that maps a JSON response NS
 For usage, see JTObjectMappingTests.m, will be adding more detailed description soon.
 
 
+- Added NSDate support for mappings
+
+
 --
 Future
 
-- Adding NSDate support for mapping
+- Add NSArray support
 

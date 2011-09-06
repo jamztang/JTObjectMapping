@@ -11,6 +11,7 @@
 #import "JTUserTest.h"
 #import "JTSocialNetworkTest.h"
 #import "JTMappings.h"
+#import "JTDateMappings.h"
 
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
@@ -26,6 +27,7 @@
                  @"Manager", @"p_title",
                  [NSNumber numberWithInt:30], @"p_age",
                  [NSNull null], @"p_null",          // Sometime [NSNull null] object would be returned from the JSON response
+                 @"1970-01-01T00:00:00+0000", @"create_date",
                  [NSDictionary dictionaryWithObjectsAndKeys:
                   @"@bob", @"twitter",
                   @"bob", @"facebook",
@@ -37,6 +39,8 @@
                     @"title", @"p_title",
                     @"age", @"p_age",
                     @"null", @"p_null",
+                    [JTDateMappings mappingWithKey:@"createDate"
+                                  dateFormatString:@"yyyy-MM-dd'T'hh:mm:ssZ"], @"create_date",
                     [JTMappings mappingWithKey:@"socialNetwork" 
                                    targetClass:[JTSocialNetworkTest class]
                                        mapping:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -82,6 +86,10 @@
 
 - (void)testNull {
     STAssertNil(self.object.null, @"null should be mapped to nil", nil);
+}
+
+- (void)testCreateDate {
+    STAssertTrue([self.object.createDate isEqual:[NSDate dateWithTimeIntervalSince1970:0]], @"date %@ != %@", self.object.createDate, [NSDate dateWithTimeIntervalSince1970:0]);
 }
 
 @end
