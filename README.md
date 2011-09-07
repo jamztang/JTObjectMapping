@@ -5,6 +5,9 @@ Inspired by RestKit. A very simple helper framework that maps a JSON response NS
 
 For usage, see JTObjectMappingTests.m, will be adding more detailed description soon.
 
+v1.0.3
+- Add raw array JSON response support
+
 v1.0.2
 - Added NSArray support
 
@@ -17,5 +20,4 @@ Future
 
 - Add mapping property from dictionary keyPath support
 - Add key to property auto mapping for same name
-- Add raw array JSON response support
 

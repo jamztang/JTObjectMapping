@@ -41,21 +41,14 @@
             } else if ([(NSObject *)obj isKindOfClass:[NSArray class]]) {
                 if ([mapsToValue conformsToProtocol:@protocol(JTMappings)]) {
                     id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
-                    NSMutableArray *array = [NSMutableArray array];
-                    for (NSObject *dict in obj) {
-                        NSParameterAssert([dict isKindOfClass:[NSDictionary class]]);
-                        NSObject *newObj = [[mappings.targetClass alloc] init];
-                        [newObj setValueFromDictionary:(NSDictionary *)dict mapping:mappings.mapping];
-                        [array addObject:newObj];
-                        [newObj release];
-                    }
-                    [self setValue:array forKey:mappings.key];
+                    NSObject *object = [[self class] objectFromJSONObject:obj mapping:mappings.mapping];
+                    [self setValue:object forKey:mappings.key];
                 } else {
                     NSMutableArray *array = [NSMutableArray array];
                     for (NSObject *o in obj) {
                         [array addObject:o];
                     }
-                    [self setValue:array forKey:mapsToValue];
+                    [self setValue:[NSArray arrayWithArray:array] forKey:mapsToValue];
                 }
             } else {
                 NSAssert2(NO, @"[mapsToValue class]: %@, [obj class]: %@ is not handled", NSStringFromClass([mapsToValue class]), NSStringFromClass([obj class])); 
@@ -74,7 +67,13 @@
         returnObject = [[[[self class] alloc] init] autorelease];
         [returnObject setValueFromDictionary:(NSDictionary *)object mapping:mapping];
     } else if ([object isKindOfClass:[NSArray class]]) {
-        // TODO: implement NSArray response
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSObject *dict in (NSArray *)object) {
+            NSParameterAssert([dict isKindOfClass:[NSDictionary class]]);
+            NSObject *newObj = [[self class] objectFromJSONObject:(NSDictionary *)dict mapping:mapping];
+            [array addObject:newObj];
+        }
+        returnObject = [NSArray arrayWithArray:array];
     }
     return returnObject;
 }

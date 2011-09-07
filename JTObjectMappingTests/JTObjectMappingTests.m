@@ -13,6 +13,7 @@
 
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
+@synthesize userArray;
 
 
 - (void)setUp
@@ -68,12 +69,23 @@
                     nil];
 
     self.object = [JTUserTest objectFromJSONObject:json mapping:mapping];
+
+
+    // Test if the JSON response is raw array
+    NSArray *jsonArray = [NSArray arrayWithObjects:
+                          [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"John", @"p_name", nil],
+                          [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"Doe", @"p_name", nil],
+                          nil];
+
+    self.userArray = [NSArray objectFromJSONObject:jsonArray mapping:self.mapping];
 }
 
 - (void)tearDown
 {
     // Tear-down code here.
-    
+    self.userArray = nil;
     self.json = nil;
     self.mapping = nil;
     self.object = nil;
@@ -122,6 +134,18 @@
     STAssertTrue([userJohn isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userJohn class]);
     STAssertTrue([userJohn.name isEqual:@"John"], @"%@ != John", userJohn.name);
 
+    JTUserTest *userDoe = [self.object.users objectAtIndex:1];
+    STAssertTrue([userDoe isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userDoe class]);
+    STAssertTrue([userDoe.name isEqual:@"Doe"], @"%@ != Doe", userDoe.name);
+}
+
+- (void)testUserArray {
+    STAssertTrue([self.userArray count] == 2, @"Should have two users", nil);
+
+    JTUserTest *userJohn = [self.object.users objectAtIndex:0];
+    STAssertTrue([userJohn isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userJohn class]);
+    STAssertTrue([userJohn.name isEqual:@"John"], @"%@ != John", userJohn.name);
+    
     JTUserTest *userDoe = [self.object.users objectAtIndex:1];
     STAssertTrue([userDoe isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userDoe class]);
     STAssertTrue([userDoe.name isEqual:@"Doe"], @"%@ != Doe", userDoe.name);
