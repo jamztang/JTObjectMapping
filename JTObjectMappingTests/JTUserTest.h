@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *null;
 @property (nonatomic, retain) NSDate *createDate;
 @property (nonatomic, retain) NSArray *childs;
+@property (nonatomic, retain) NSArray *users;
 @property (nonatomic, retain) JTSocialNetworkTest *socialNetwork;
 
 @end

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F56C814168CC3007145BC /* JTDateMappings.m */; };
-		1A5F56CD1416A2F5007145BC /* JTArrayMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F56CC1416A2F5007145BC /* JTArrayMappings.m */; };
 		1A7E71C61415F96700AE157A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C51415F96700AE157A /* UIKit.framework */; };
 		1A7E71C81415F96700AE157A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C71415F96700AE157A /* Foundation.framework */; };
 		1A7E71CA1415F96700AE157A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C91415F96700AE157A /* CoreGraphics.framework */; };
@@ -44,8 +43,6 @@
 /* Begin PBXFileReference section */
 		1A5F56C714168CC3007145BC /* JTDateMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDateMappings.h; sourceTree = "<group>"; };
 		1A5F56C814168CC3007145BC /* JTDateMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDateMappings.m; sourceTree = "<group>"; };
-		1A5F56CB1416A2F5007145BC /* JTArrayMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTArrayMappings.h; sourceTree = "<group>"; };
-		1A5F56CC1416A2F5007145BC /* JTArrayMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTArrayMappings.m; sourceTree = "<group>"; };
 		1A7E71C11415F96700AE157A /* JTObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7E71C51415F96700AE157A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1A7E71C71415F96700AE157A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -189,8 +186,6 @@
 				1A7E720A141605B300AE157A /* JTMappings.m */,
 				1A5F56C714168CC3007145BC /* JTDateMappings.h */,
 				1A5F56C814168CC3007145BC /* JTDateMappings.m */,
-				1A5F56CB1416A2F5007145BC /* JTArrayMappings.h */,
-				1A5F56CC1416A2F5007145BC /* JTArrayMappings.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -308,7 +303,6 @@
 				1A7E720B141605B300AE157A /* JTMappings.m in Sources */,
 				1A7E720E141613C900AE157A /* JTUserTest.m in Sources */,
 				1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */,
-				1A5F56CD1416A2F5007145BC /* JTArrayMappings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

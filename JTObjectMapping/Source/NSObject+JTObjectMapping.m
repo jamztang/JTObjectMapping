@@ -9,10 +9,13 @@
 #import "NSObject+JTObjectMapping.h"
 #import "JTMappings.h"
 #import "JTDateMappings.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (JTObjectMapping)
 
 - (void)setValueFromDictionary:(NSDictionary *)dict mapping:(NSDictionary *)mapping {
+    
+    
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id mapsToValue = [mapping objectForKey:key];
         if (mapsToValue != nil) {
@@ -35,17 +38,25 @@
                 NSDate *date = [formatter dateFromString:obj];
                 [formatter release];
                 [self setValue:date forKey:mappings.key];
-            } else if ([mapsToValue conformsToProtocol:@protocol(JTArrayMappings)] && [(NSObject *)obj isKindOfClass:[NSArray class]]) {
-                id <JTArrayMappings> mappings = (id <JTArrayMappings>)mapsToValue;
-                NSMutableArray *array = [NSMutableArray array];
-                for (NSObject *o in obj) {
-                    if ([o isKindOfClass:[NSString class]]) {
-                        [array addObject:o];
-                    } else {
-                        
+            } else if ([(NSObject *)obj isKindOfClass:[NSArray class]]) {
+                if ([mapsToValue conformsToProtocol:@protocol(JTMappings)]) {
+                    id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (NSObject *dict in obj) {
+                        NSParameterAssert([dict isKindOfClass:[NSDictionary class]]);
+                        NSObject *newObj = [[mappings.targetClass alloc] init];
+                        [newObj setValueFromDictionary:(NSDictionary *)dict mapping:mappings.mapping];
+                        [array addObject:newObj];
+                        [newObj release];
                     }
+                    [self setValue:array forKey:mappings.key];
+                } else {
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (NSObject *o in obj) {
+                        [array addObject:o];
+                    }
+                    [self setValue:array forKey:mapsToValue];
                 }
-                [self setValue:array forKey:mappings.key];
             } else {
                 NSAssert2(NO, @"[mapsToValue class]: %@, [obj class]: %@ is not handled", NSStringFromClass([mapsToValue class]), NSStringFromClass([obj class])); 
             }
@@ -55,6 +66,17 @@
 
 + (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping {
     return [JTMappings mappingWithKey:key targetClass:[self class] mapping:mapping];
+}
+
++ (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSDictionary *)mapping {
+    id returnObject = nil;
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        returnObject = [[[[self class] alloc] init] autorelease];
+        [returnObject setValueFromDictionary:(NSDictionary *)object mapping:mapping];
+    } else if ([object isKindOfClass:[NSArray class]]) {
+        // TODO: implement NSArray response
+    }
+    return returnObject;
 }
 
 @end
@@ -69,16 +91,6 @@
 
 + (id <JTDateMappings>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString {
     return [JTDateMappings mappingWithKey:key dateFormatString:dateFormatString];
-}
-
-@end
-
-@implementation NSArray (JTObjectMapping)
-
-+ (id <JTArrayMappings>)mappingWithKey:(NSString *)key {
-    JTArrayMappings *mappings = [[JTArrayMappings alloc] init];
-    mappings.key = key;
-    return [mappings autorelease];
 }
 
 @end
