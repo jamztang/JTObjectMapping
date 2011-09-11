@@ -18,6 +18,13 @@
     
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id mapsToValue = [mapping objectForKey:key];
+        if (mapsToValue == nil) {
+            // We wants to auto reference the NSDictionary key corresponding NSObject property key
+            // with the same name defined as in the NSObject subclass.
+            if ([[self class] instancesRespondToSelector:NSSelectorFromString(key)]) {
+                mapsToValue = key;
+            }
+        }
         if (mapsToValue != nil) {
             if ([(NSObject *)mapsToValue isKindOfClass:[NSString class]]) {
                 if ([obj isKindOfClass:[NSNull class]]) {

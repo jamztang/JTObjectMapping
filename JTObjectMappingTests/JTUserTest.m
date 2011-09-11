@@ -12,6 +12,8 @@
 @synthesize name, title, age, null;
 @synthesize createDate;
 @synthesize childs, users;
+@synthesize autoString, autoArray;
+//@synthesize autoSocialNetwork;
 @synthesize socialNetwork;
 
 @end

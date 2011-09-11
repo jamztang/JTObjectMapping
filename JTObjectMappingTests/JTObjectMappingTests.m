@@ -13,8 +13,6 @@
 
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
-@synthesize userArray;
-
 
 - (void)setUp
 {
@@ -41,13 +39,24 @@
                   nil], @"p_users",
 
                  @"1970-01-01T00:00:00+0000", @"create_date",
+                 
+                 
+                 @"yes", @"autoString",
+                 [NSArray arrayWithObjects:
+                  @"Object1",
+                  @"Object2",
+                  nil], @"autoArray",
+
+//                 [NSDictionary dictionaryWithObjectsAndKeys:
+//                  @"@bob", @"twitter",
+//                  @"bob", @"facebook",
+//                  nil], @"autoSocialNetwork",
 
                  [NSDictionary dictionaryWithObjectsAndKeys:
                   @"@bob", @"twitter",
                   @"bob", @"facebook",
                   nil], @"social_networks",
                  nil];
-
     
     self.mapping = [NSDictionary dictionaryWithObjectsAndKeys:
                     @"name", @"p_name",
@@ -69,29 +78,21 @@
                     nil];
 
     self.object = [JTUserTest objectFromJSONObject:json mapping:mapping];
-
-
-    // Test if the JSON response is raw array
-    NSArray *jsonArray = [NSArray arrayWithObjects:
-                          [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"John", @"p_name", nil],
-                          [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"Doe", @"p_name", nil],
-                          nil];
-
-    self.userArray = [NSArray objectFromJSONObject:jsonArray mapping:self.mapping];
 }
 
 - (void)tearDown
 {
     // Tear-down code here.
-    self.userArray = nil;
     self.json = nil;
     self.mapping = nil;
     self.object = nil;
 
     [super tearDown];
 }
+
+//- (void)testPrintJSON {
+//    NSLog(@"%@", self.json);
+//}
 
 - (void)testTitle {
     STAssertTrue([self.object.title isEqual:@"Manager"], @"title = %@ fails to equal %@", self.object.title, @"Manager");
@@ -132,23 +133,26 @@
 
     JTUserTest *userJohn = [self.object.users objectAtIndex:0];
     STAssertTrue([userJohn isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userJohn class]);
-    STAssertTrue([userJohn.name isEqual:@"John"], @"%@ != John", userJohn.name);
+    STAssertEqualObjects(userJohn.name, @"John", nil, nil);
 
     JTUserTest *userDoe = [self.object.users objectAtIndex:1];
     STAssertTrue([userDoe isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userDoe class]);
-    STAssertTrue([userDoe.name isEqual:@"Doe"], @"%@ != Doe", userDoe.name);
+    STAssertEqualObjects(userDoe.name, @"Doe", nil, nil);
 }
 
-- (void)testUserArray {
-    STAssertTrue([self.userArray count] == 2, @"Should have two users", nil);
-
-    JTUserTest *userJohn = [self.object.users objectAtIndex:0];
-    STAssertTrue([userJohn isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userJohn class]);
-    STAssertTrue([userJohn.name isEqual:@"John"], @"%@ != John", userJohn.name);
-    
-    JTUserTest *userDoe = [self.object.users objectAtIndex:1];
-    STAssertTrue([userDoe isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userDoe class]);
-    STAssertTrue([userDoe.name isEqual:@"Doe"], @"%@ != Doe", userDoe.name);
-}
+//- (void)testAutoMapping {
+//    STAssertEqualObjects(self.object.autoString, @"yes", nil, nil);
+//    NSArray *array = [NSArray arrayWithObjects:
+//                      @"Object1",
+//                      @"Object2",
+//                      nil];
+//    STAssertEqualObjects(self.object.autoArray, array, nil, nil);
+//    
+//    JTSocialNetworkTest *network = [[JTSocialNetworkTest alloc] init];
+//    network.twitterID = @"@bob";
+//    network.facebookID = @"bob";
+//    STAssertEqualObjects(self.object.autoSocialNetwork, network, nil, nil);
+//    [network release];
+//}
 
 @end

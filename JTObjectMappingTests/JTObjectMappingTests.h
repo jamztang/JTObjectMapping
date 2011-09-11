@@ -15,6 +15,5 @@
 @property (nonatomic, retain) NSDictionary *json;
 @property (nonatomic, retain) NSDictionary *mapping;
 @property (nonatomic, retain) JTUserTest    *object;
-@property (nonatomic, retain) NSArray       *userArray;
 
 @end

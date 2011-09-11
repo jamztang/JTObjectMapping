@@ -28,6 +28,7 @@
 		1A7E7208141602C900AE157A /* JTSocialNetworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E7207141602C900AE157A /* JTSocialNetworkTest.m */; };
 		1A7E720B141605B300AE157A /* JTMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E720A141605B300AE157A /* JTMappings.m */; };
 		1A7E720E141613C900AE157A /* JTUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E720D141613C800AE157A /* JTUserTest.m */; };
+		1AF05842141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF05841141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		1A7E720A141605B300AE157A /* JTMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTMappings.m; sourceTree = "<group>"; };
 		1A7E720C141613C800AE157A /* JTUserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTUserTest.h; sourceTree = "<group>"; };
 		1A7E720D141613C800AE157A /* JTUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTUserTest.m; sourceTree = "<group>"; };
+		1AF05840141D1C9A00CD7E50 /* JTObjectMappingArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTObjectMappingArrayTest.h; sourceTree = "<group>"; };
+		1AF05841141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTObjectMappingArrayTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 			children = (
 				1A7E71F31415F96800AE157A /* JTObjectMappingTests.h */,
 				1A7E71F51415F96800AE157A /* JTObjectMappingTests.m */,
+				1AF05840141D1C9A00CD7E50 /* JTObjectMappingArrayTest.h */,
+				1AF05841141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m */,
 				1A7E71EE1415F96800AE157A /* Supporting Files */,
 				1A7E720C141613C800AE157A /* JTUserTest.h */,
 				1A7E720D141613C800AE157A /* JTUserTest.m */,
@@ -311,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A7E71F61415F96800AE157A /* JTObjectMappingTests.m in Sources */,
+				1AF05842141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
