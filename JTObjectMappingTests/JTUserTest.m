@@ -15,5 +15,6 @@
 @synthesize autoString, autoArray;
 //@synthesize autoSocialNetwork;
 @synthesize socialNetwork;
+@synthesize nestedArray;
 
 @end

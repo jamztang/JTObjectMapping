@@ -10,6 +10,7 @@
 #import "NSObject+JTObjectMapping.h"
 #import "JTUserTest.h"
 #import "JTSocialNetworkTest.h"
+#import "JPNestedArrayTest.h"
 
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
@@ -56,6 +57,15 @@
                   @"@bob", @"twitter",
                   @"bob", @"facebook",
                   nil], @"social_networks",
+                 
+                 
+                 [NSArray arrayWithObjects:
+                  [NSDictionary dictionaryWithObjectsAndKeys:
+                   [NSArray arrayWithObjects:@"one", @"two", nil], @"array", nil],
+                  [NSDictionary dictionaryWithObjectsAndKeys:
+                   [NSArray arrayWithObjects:@"three", @"four", nil], @"array", nil],
+                  nil], @"nestedArray",
+
                  nil];
     
     self.mapping = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -75,6 +85,10 @@
                                                          @"twitterID", @"twitter",
                                                          @"facebookID", @"facebook",
                                                          nil]], @"social_networks",
+                    
+                    [JPNestedArrayTest mappingWithKey:@"nestedArray"
+                                       mapping:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                @"array", @"array", nil]], @"nestedArray",
                     nil];
 
     self.object = [JTUserTest objectFromJSONObject:json mapping:mapping];
@@ -154,5 +168,21 @@
 //    STAssertEqualObjects(self.object.autoSocialNetwork, network, nil, nil);
 //    [network release];
 //}
+//
+- (void)testNestedArray {
+    STAssertTrue([self.object.nestedArray count] == 2, @"Should have two apis", nil);
+    
+    JPNestedArrayTest *api = [self.object.nestedArray objectAtIndex:0];
+    STAssertTrue([api isKindOfClass:[JPNestedArrayTest class]], @"%@ != [JPAPITests class]", [api class]);
+    
+    NSArray *expectedArray = [NSArray arrayWithObjects:@"one", @"two", nil];
+    STAssertEqualObjects(api.array, expectedArray, nil, nil);
+
+    JPNestedArrayTest *api2 = [self.object.nestedArray objectAtIndex:1];
+    STAssertTrue([api2 isKindOfClass:[JPNestedArrayTest class]], @"%@ != [JPAPITests class]", [api2 class]);
+    
+    NSArray *expectedArray2 = [NSArray arrayWithObjects:@"three", @"four", nil];
+    STAssertEqualObjects(api2.array, expectedArray2, nil, nil);
+}
 
 @end

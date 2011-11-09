@@ -48,7 +48,7 @@
             } else if ([(NSObject *)obj isKindOfClass:[NSArray class]]) {
                 if ([mapsToValue conformsToProtocol:@protocol(JTMappings)]) {
                     id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
-                    NSObject *object = [[self class] objectFromJSONObject:obj mapping:mappings.mapping];
+                    NSObject *object = [mappings.targetClass objectFromJSONObject:obj mapping:mappings.mapping];
                     [self setValue:object forKey:mappings.key];
                 } else {
                     NSMutableArray *array = [NSMutableArray array];

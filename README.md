@@ -73,14 +73,17 @@ For more detailed usage, see **JTObjectMappingTests.m**, will be adding more det
 Update Logs
 -----------
 
-v1.0.4
-- Added auto NSDictionary value to NSObject property mapping with the same key defined
+v1.0.5  
+- Fixed nested array causing crash
+
+v1.0.4  
+- Added auto NSDictionary value to NSObject property mapping with the same key defined  
 - Fixed false possible JSON response in NSArray use case
 
-v1.0.3  
+v1.0.3   
 - Add raw array JSON response support
 
-v1.0.2  
+v1.0.2   
 - Added NSArray support
 
 v1.0.1  

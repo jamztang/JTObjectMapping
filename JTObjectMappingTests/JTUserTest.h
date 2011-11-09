@@ -22,6 +22,7 @@
 
 @property (nonatomic, copy) NSString *autoString;
 @property (nonatomic, retain) NSArray *autoArray;
+@property (nonatomic, retain) NSArray *nestedArray;
 //@property (nonatomic, retain) JTSocialNetworkTest *autoSocialNetwork;
 
 @property (nonatomic, retain) JTSocialNetworkTest *socialNetwork;

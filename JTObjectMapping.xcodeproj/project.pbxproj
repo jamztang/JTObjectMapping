@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A23E1D71469B35D002BBB85 /* JPNestedArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */; };
 		1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F56C814168CC3007145BC /* JTDateMappings.m */; };
 		1A7E71C61415F96700AE157A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C51415F96700AE157A /* UIKit.framework */; };
 		1A7E71C81415F96700AE157A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C71415F96700AE157A /* Foundation.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A23E1D51469B35C002BBB85 /* JPNestedArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = JPNestedArrayTest.h; sourceTree = "<group>"; };
+		1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNestedArrayTest.m; sourceTree = "<group>"; };
 		1A5F56C714168CC3007145BC /* JTDateMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDateMappings.h; sourceTree = "<group>"; };
 		1A5F56C814168CC3007145BC /* JTDateMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDateMappings.m; sourceTree = "<group>"; };
 		1A7E71C11415F96700AE157A /* JTObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +172,8 @@
 				1A7E720D141613C800AE157A /* JTUserTest.m */,
 				1A7E7206141602C900AE157A /* JTSocialNetworkTest.h */,
 				1A7E7207141602C900AE157A /* JTSocialNetworkTest.m */,
+				1A23E1D51469B35C002BBB85 /* JPNestedArrayTest.h */,
+				1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */,
 			);
 			path = JTObjectMappingTests;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				1A7E720B141605B300AE157A /* JTMappings.m in Sources */,
 				1A7E720E141613C900AE157A /* JTUserTest.m in Sources */,
 				1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */,
+				1A23E1D71469B35D002BBB85 /* JPNestedArrayTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
