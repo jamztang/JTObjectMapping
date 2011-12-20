@@ -1,10 +1,10 @@
-//
-//  JTMappings.h
-//  JTObjectMapping
-//
-//  Created by james on 9/6/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
+/*
+ * This file is part of the JTObjectMapping package.
+ * (c) James Tang <mystcolor@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 #import <Foundation/Foundation.h>
 

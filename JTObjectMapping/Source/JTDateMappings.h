@@ -1,10 +1,10 @@
-//
-//  JTDateMappings.h
-//  JTObjectMapping
-//
-//  Created by James Tang on 07/09/2011.
-//  Copyright 2011 CUHK. All rights reserved.
-//
+/*
+ * This file is part of the JTObjectMapping package.
+ * (c) James Tang <mystcolor@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 #import <Foundation/Foundation.h>
 
