@@ -3,6 +3,16 @@ JTObjectMapping
 
 Inspired by RestKit. A very simple objective-c framework that maps a JSON response from NSDictionary or NSArray to NSObject subclasses for iOS.
 
+Install
+-------
+
+### Original method
+
+Copy all files in JTObjectMapping/ into your project.
+
+### CocoaPods
+
+`$ pod search JTObjectMapping`, you should be able to specify the right version in your Podfile. Here's more information about [CocoaPods][].
 
 Usage
 -----
@@ -88,4 +98,7 @@ v1.0.2
 
 v1.0.1  
 - Added NSDate support for mappings
+
+
+[CocoaPods]:https://github.com/CocoaPods/CocoaPods
 
