@@ -15,7 +15,8 @@
 
 - (void)setValueFromDictionary:(NSDictionary *)dict mapping:(NSDictionary *)mapping {
     
-    
+    __block NSMutableDictionary *notMapped = [mapping mutableCopy];
+
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id mapsToValue = [mapping objectForKey:key];
         if (mapsToValue == nil) {
@@ -60,8 +61,22 @@
             } else {
                 NSAssert2(NO, @"[mapsToValue class]: %@, [obj class]: %@ is not handled", NSStringFromClass([mapsToValue class]), NSStringFromClass([obj class])); 
             }
+
+            // Value is mapped, remove from notMapped dict
+            [notMapped removeObjectForKey:key];
         }
     }];
+
+    // Likely to be keyPath, enumerate and try add to our object
+    // Could cause unexpected result if obj [dict valueForKeyPath:key] is not NSString
+#if ! JTOBJECTMAPPING_DISABLE_KEYPATH_SUPPORT
+    [notMapped enumerateKeysAndObjectsUsingBlock:^(id key, NSString *obj, BOOL *stop) {
+        id value = [dict valueForKeyPath:key];
+        [self setValue:value forKey:obj];
+    }];
+#endif
+
+    [notMapped release];
 }
 
 + (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping {
