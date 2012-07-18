@@ -27,41 +27,53 @@
             }
         }
         if (mapsToValue != nil) {
-            if ([(NSObject *)mapsToValue isKindOfClass:[NSString class]]) {
-                if ([obj isKindOfClass:[NSNull class]]) {
+            if ([obj isKindOfClass:[NSNull class]]) {
+                if ([mapsToValue conformsToProtocol:@protocol(JTMappings)] || [mapsToValue conformsToProtocol:@protocol(JTDateMappings)]) {
+                    [self setValue:nil forKey:[mapsToValue key]];
+                } else if ([mapsToValue isKindOfClass:[NSString class]]) {
                     [self setValue:nil forKey:mapsToValue];
                 } else {
-                    [self setValue:obj forKey:mapsToValue];
+                    NSAssert(NO, @"[mapsToValue class]: %@, for [NSNull null] objects not handled", NSStringFromClass([mapsToValue class]));
                 }
-            } else if ([mapsToValue conformsToProtocol:@protocol(JTMappings)] && [(NSObject *)obj isKindOfClass:[NSDictionary class]]) {
-                id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
-                NSObject *targetObject = [[mappings.targetClass alloc] init];
-                [targetObject setValueFromDictionary:obj mapping:mappings.mapping];
-                [self setValue:targetObject forKey:mappings.key];
-                [targetObject release];
-            } else if ([mapsToValue conformsToProtocol:@protocol(JTDateMappings)] && [(NSObject *)obj isKindOfClass:[NSString class]]) {
-                id <JTDateMappings> mappings = (id <JTDateMappings>)mapsToValue;
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:mappings.dateFormatString];
-                NSDate *date = [formatter dateFromString:obj];
-                [formatter release];
-                [self setValue:date forKey:mappings.key];
-            } else if ([(NSObject *)obj isKindOfClass:[NSArray class]]) {
-                if ([mapsToValue conformsToProtocol:@protocol(JTMappings)]) {
-                    id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
-                    NSObject *object = [mappings.targetClass objectFromJSONObject:obj mapping:mappings.mapping];
-                    [self setValue:object forKey:mappings.key];
-                } else {
-                    NSMutableArray *array = [NSMutableArray array];
-                    for (NSObject *o in obj) {
-                        [array addObject:o];
-                    }
-                    [self setValue:[NSArray arrayWithArray:array] forKey:mapsToValue];
-                }
-            } else {
-                NSAssert2(NO, @"[mapsToValue class]: %@, [obj class]: %@ is not handled", NSStringFromClass([mapsToValue class]), NSStringFromClass([obj class])); 
-            }
 
+            } else {
+
+                if ([(NSObject *)mapsToValue isKindOfClass:[NSString class]]) {
+                    if ([obj isKindOfClass:[NSNull class]]) {
+                        [self setValue:nil forKey:mapsToValue];
+                    } else {
+                        [self setValue:obj forKey:mapsToValue];
+                    }
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTMappings)] && [(NSObject *)obj isKindOfClass:[NSDictionary class]]) {
+                    id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
+                    NSObject *targetObject = [[mappings.targetClass alloc] init];
+                    [targetObject setValueFromDictionary:obj mapping:mappings.mapping];
+                    [self setValue:targetObject forKey:mappings.key];
+                    [targetObject release];
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTDateMappings)] && [(NSObject *)obj isKindOfClass:[NSString class]]) {
+                    id <JTDateMappings> mappings = (id <JTDateMappings>)mapsToValue;
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:mappings.dateFormatString];
+                    NSDate *date = [formatter dateFromString:obj];
+                    [formatter release];
+                    [self setValue:date forKey:mappings.key];
+                } else if ([(NSObject *)obj isKindOfClass:[NSArray class]]) {
+                    if ([mapsToValue conformsToProtocol:@protocol(JTMappings)]) {
+                        id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
+                        NSObject *object = [mappings.targetClass objectFromJSONObject:obj mapping:mappings.mapping];
+                        [self setValue:object forKey:mappings.key];
+                    } else {
+                        NSMutableArray *array = [NSMutableArray array];
+                        for (NSObject *o in obj) {
+                            [array addObject:o];
+                        }
+                        [self setValue:[NSArray arrayWithArray:array] forKey:mapsToValue];
+                    }
+                } else {
+                    NSAssert2(NO, @"[mapsToValue class]: %@, [obj class]: %@ is not handled", NSStringFromClass([mapsToValue class]), NSStringFromClass([obj class])); 
+                }
+
+            }
             // Value is mapped, remove from notMapped dict
             [notMapped removeObjectForKey:key];
         }
@@ -70,7 +82,7 @@
     // Likely to be keyPath, enumerate and try add to our object
     // Could cause unexpected result if obj [dict valueForKeyPath:key] is not NSString
 #if ! JTOBJECTMAPPING_DISABLE_KEYPATH_SUPPORT
-    [notMapped enumerateKeysAndObjectsUsingBlock:^(id key, NSString *obj, BOOL *stop) {
+    [notMapped enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id value = [dict valueForKeyPath:key];
         [self setValue:value forKey:obj];
     }];

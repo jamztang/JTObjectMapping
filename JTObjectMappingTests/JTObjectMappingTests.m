@@ -25,7 +25,6 @@
                  @"Manager", @"p_title",
 
                  [NSNumber numberWithInt:30], @"p_age",
-                 [NSNull null], @"p_null",          // Sometime [NSNull null] object would be returned from the JSON response
 
                  [NSArray arrayWithObjects:
                   @"Mary",
@@ -66,29 +65,48 @@
                    [NSArray arrayWithObjects:@"three", @"four", nil], @"array", nil],
                   nil], @"nestedArray",
 
+                 // Sometime [NSNull null] object would be returned from the JSON response
+                 [NSNull null], @"p_null",
+                 [NSNull null], @"null_date",
+                 [NSNull null], @"null_child",
+                 [NSNull null], @"null_array",
+                 [NSNull null], @"null_number",
+
                  nil];
+
+    NSDictionary *socialNetworkMapping = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          @"twitterID", @"twitter",
+                                          @"facebookID", @"facebook",
+                                          nil];
+    
+    NSString *dateFormat = @"yyyy-MM-dd'T'hh:mm:ssZ";
     
     self.mapping = [NSDictionary dictionaryWithObjectsAndKeys:
                     @"name", @"p_name",
                     @"title", @"p_title",
                     @"age", @"p_age",
-                    @"null", @"p_null",
                     @"childs", @"p_childs",
                     [JTUserTest mappingWithKey:@"users"
                                        mapping:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 @"name", @"p_name",
                                                 nil]], @"p_users",
                     [NSDate mappingWithKey:@"createDate"
-                          dateFormatString:@"yyyy-MM-dd'T'hh:mm:ssZ"], @"create_date",
+                          dateFormatString:dateFormat], @"create_date",
                     [JTSocialNetworkTest mappingWithKey:@"socialNetwork"
-                                                mapping:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                         @"twitterID", @"twitter",
-                                                         @"facebookID", @"facebook",
-                                                         nil]], @"social_networks",
+                                                mapping:socialNetworkMapping], @"social_networks",
                     
                     [JPNestedArrayTest mappingWithKey:@"nestedArray"
                                        mapping:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 @"array", @"array", nil]], @"nestedArray",
+
+                    @"null", @"p_null",
+                    [NSDate mappingWithKey:@"nullDate"
+                          dateFormatString:dateFormat], @"null_date",
+                    [JTSocialNetworkTest mappingWithKey:@"nullChild"
+                                                mapping:socialNetworkMapping], @"null_child",
+                    @"nullArray", @"null_array",
+                    @"nullNumber", @"null_number",
+
                     nil];
 
     self.object = [JTUserTest objectFromJSONObject:json mapping:mapping];
@@ -130,6 +148,10 @@
 
 - (void)testNull {
     STAssertNil(self.object.null, @"null should be mapped to nil", nil);
+    STAssertNil(self.object.nullDate, @"nullDate should be mapped to nil", nil);
+    STAssertNil(self.object.nullArray, @"nullArray should be mapped to nil", nil);
+    STAssertNil(self.object.nullChild, @"nullChild should be mapped to nil", nil);
+    STAssertNil(self.object.nullNumber, @"nullNumber should be mapped to nil", nil);
 }
 
 - (void)testCreateDate {
@@ -168,7 +190,7 @@
 //    STAssertEqualObjects(self.object.autoSocialNetwork, network, nil, nil);
 //    [network release];
 //}
-//
+
 - (void)testNestedArray {
     STAssertTrue([self.object.nestedArray count] == 2, @"Should have two apis", nil);
     
