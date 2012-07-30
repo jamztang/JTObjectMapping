@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JTMappings.h"
 #import "JTDateMappings.h"
+#import "JTSetMappings.h"
 
 @protocol JTValidJSONResponse <NSObject>
 @end
@@ -35,5 +36,12 @@
 
 + (id <JTDateMappings>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString;
 + (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds;
+
+@end
+
+
+@interface NSSet (JTObjectMapping)
+
++ (id <JTSetMappings>)mappingWithKey:(NSString *)key;
 
 @end

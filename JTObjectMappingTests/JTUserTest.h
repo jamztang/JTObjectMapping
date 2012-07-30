@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSDate *eighteenthBirthday;
 @property (nonatomic, retain) NSArray *childs;
 @property (nonatomic, retain) NSArray *users;
+@property (nonatomic, retain) NSSet *favoriteColors;
 
 @property (nonatomic, copy) NSString *autoString;
 @property (nonatomic, retain) NSArray *autoArray;

@@ -39,12 +39,19 @@
             } else {
 
                 if ([(NSObject *)mapsToValue isKindOfClass:[NSString class]]) {
+                    // string mapping
                     if ([obj isKindOfClass:[NSNull class]]) {
                         [self setValue:nil forKey:mapsToValue];
                     } else {
                         [self setValue:obj forKey:mapsToValue];
                     }
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTSetMappings)] && [(NSObject *)obj isKindOfClass:[NSArray class]]) {
+                    // support turning NSArrays into a NSSets
+                    id <JTSetMappings> map = (id <JTSetMappings>)mapsToValue;
+                    NSSet *set = [NSSet setWithArray:obj];
+                    [self setValue:set forKey:map.key];
                 } else if ([mapsToValue conformsToProtocol:@protocol(JTMappings)] && [(NSObject *)obj isKindOfClass:[NSDictionary class]]) {
+                    // dictionary mapping
                     id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
                     NSObject *targetObject = [[mappings.targetClass alloc] init];
                     [targetObject setValueFromDictionary:obj mapping:mappings.mapping];
@@ -144,6 +151,15 @@
 
 + (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
     return [JTDateEpochMappings mappingWithKey:key divisorForSeconds:divisorForSeconds];
+}
+
+@end
+
+
+@implementation NSSet (JTObjectMapping)
+
++ (id <JTSetMappings>)mappingWithKey:(NSString *)key {
+    return [JTSetMappings mappingWithKey:key];
 }
 
 @end
