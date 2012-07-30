@@ -109,8 +109,15 @@
         }
         returnObject = [NSArray arrayWithArray:array];
     }
+
+    // let objects do post-mapping validation, etc
+    // (it's safe to call without checking respondsToSelector:, because we have an no-op method defined in this category)
+    [returnObject didMapObjectFromJSON];
     return returnObject;
 }
+
+// Override this in other classes to perform post-mapping validation/sanitization, etc.
+- (void)didMapObjectFromJSON {}
 
 @end
 
