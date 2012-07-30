@@ -16,6 +16,8 @@
 //@synthesize autoSocialNetwork;
 @synthesize socialNetwork;
 @synthesize nestedArray;
+@synthesize eighteenthBirthday;
+@synthesize favoriteColors;
 
 
 @synthesize null, nullDate, nullArray, nullChild, nullNumber;

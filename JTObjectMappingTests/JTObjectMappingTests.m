@@ -12,6 +12,8 @@
 #import "JTSocialNetworkTest.h"
 #import "JPNestedArrayTest.h"
 
+#define EIGHTEEN_YEARS_IN_SECONDS 567993600
+
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
 
@@ -37,9 +39,14 @@
                   [NSDictionary dictionaryWithObjectsAndKeys:
                    @"Doe", @"p_name", nil],
                   nil], @"p_users",
+                 
+                 // This turns into an NSSet
+                 [[NSSet setWithObjects:@"blue", @"green", nil] allObjects], @"favorite_colors",
 
                  @"1970-01-01T00:00:00+0000", @"create_date",
                  
+                 // eighteenth birthday in seconds since the epoch
+                 [NSNumber numberWithInt:EIGHTEEN_YEARS_IN_SECONDS], @"eighteenth_birthday",
                  
                  @"yes", @"autoString",
                  [NSArray arrayWithObjects:
@@ -90,8 +97,16 @@
                                        mapping:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 @"name", @"p_name",
                                                 nil]], @"p_users",
+                    // set mapping
+                    [NSSet mappingWithKey:@"favoriteColors"], @"favorite_colors",
+                    
+                    // date mapping -- by format or since the epoch
                     [NSDate mappingWithKey:@"createDate"
                           dateFormatString:dateFormat], @"create_date",
+                    // 1==seconds, 1000==milliseconds
+                    [NSDate mappingWithKey:@"eighteenthBirthday"
+                         divisorForSeconds:1], @"eighteenth_birthday",
+                    
                     [JTSocialNetworkTest mappingWithKey:@"socialNetwork"
                                                 mapping:socialNetworkMapping], @"social_networks",
                     
@@ -158,6 +173,12 @@
     STAssertTrue([self.object.createDate isEqual:[NSDate dateWithTimeIntervalSince1970:0]], @"date %@ != %@", self.object.createDate, [NSDate dateWithTimeIntervalSince1970:0]);
 }
 
+// Test date with seconds since Epoch
+- (void)testEpochDate {
+    NSDate *date18 = [NSDate dateWithTimeIntervalSince1970:EIGHTEEN_YEARS_IN_SECONDS];
+    STAssertTrue([self.object.eighteenthBirthday isEqual:date18], @"date %@ != %@", self.object.eighteenthBirthday, date18);
+}
+
 - (void)testChilds {
     STAssertTrue([self.object.childs count] == 2, @"Should have two childs", nil);
     STAssertTrue([[self.object.childs objectAtIndex:0] isEqual:@"Mary"], @"%@ != Mary", [self.object.childs objectAtIndex:0]);
@@ -174,6 +195,13 @@
     JTUserTest *userDoe = [self.object.users objectAtIndex:1];
     STAssertTrue([userDoe isKindOfClass:[JTUserTest class]], @"%@ != [JTUserTest class]", [userDoe class]);
     STAssertEqualObjects(userDoe.name, @"Doe", nil, nil);
+}
+
+- (void)testSet {
+    NSSet *colors = self.object.favoriteColors;
+    STAssertTrue([colors isKindOfClass:[NSSet class]], @"%@ != [NSSet class]", [colors class]);
+    STAssertTrue([colors containsObject:@"green"], @"%@ should contain 'green'", colors);
+    STAssertTrue([colors containsObject:@"blue"], @"%@ should contain 'blue'", colors);
 }
 
 //- (void)testAutoMapping {
