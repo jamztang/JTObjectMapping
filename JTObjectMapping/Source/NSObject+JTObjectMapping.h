@@ -34,5 +34,6 @@
 @interface NSDate (JTObjectMapping)
 
 + (id <JTDateMappings>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString;
++ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds;
 
 @end

@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSNumber *age;
 @property (nonatomic, retain) NSDate *createDate;
+@property (nonatomic, retain) NSDate *eighteenthBirthday;
 @property (nonatomic, retain) NSArray *childs;
 @property (nonatomic, retain) NSArray *users;
 

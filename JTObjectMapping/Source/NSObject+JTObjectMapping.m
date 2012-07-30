@@ -51,12 +51,21 @@
                     [self setValue:targetObject forKey:mappings.key];
                     [targetObject release];
                 } else if ([mapsToValue conformsToProtocol:@protocol(JTDateMappings)] && [(NSObject *)obj isKindOfClass:[NSString class]]) {
+                    // date mapping by string formatting
                     id <JTDateMappings> mappings = (id <JTDateMappings>)mapsToValue;
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                     [formatter setDateFormat:mappings.dateFormatString];
                     NSDate *date = [formatter dateFromString:obj];
                     [formatter release];
                     [self setValue:date forKey:mappings.key];
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTDateEpochMappings)] && [(NSObject *)obj isKindOfClass:[NSNumber class]]) {
+                    // date mapping by some fraction of seconds since the epoch
+                    id <JTDateEpochMappings> map = (id <JTDateEpochMappings>)mapsToValue;
+                    CGFloat secondsFactor = [(NSNumber *)obj floatValue];
+                    NSTimeInterval secSinceEpoch = secondsFactor / map.divisorForSeconds; // convert into desired unit of seconds, 1000==milliseconds
+                    // create the date and assign it to the object we're mapping
+                    NSDate *date = [NSDate dateWithTimeIntervalSince1970:secSinceEpoch];
+                    [self setValue:date forKey:map.key];
                 } else if ([(NSObject *)obj isKindOfClass:[NSArray class]]) {
                     if ([mapsToValue conformsToProtocol:@protocol(JTMappings)]) {
                         id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
@@ -131,6 +140,10 @@
 
 + (id <JTDateMappings>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString {
     return [JTDateMappings mappingWithKey:key dateFormatString:dateFormatString];
+}
+
++ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
+    return [JTDateEpochMappings mappingWithKey:key divisorForSeconds:divisorForSeconds];
 }
 
 @end

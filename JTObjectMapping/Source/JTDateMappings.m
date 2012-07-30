@@ -25,3 +25,22 @@
 }
 
 @end
+
+
+
+@implementation JTDateEpochMappings
+@synthesize key, divisorForSeconds;
+
++ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
+    JTDateEpochMappings *epochMapping = [[JTDateEpochMappings alloc] init];
+    epochMapping.key = key;
+    epochMapping.divisorForSeconds = divisorForSeconds;
+    return [epochMapping autorelease];
+}
+
+- (void)dealloc {
+    self.key = nil;
+    [super dealloc];
+}
+
+@end
