@@ -18,7 +18,7 @@
 @synthesize nestedArray;
 @synthesize eighteenthBirthday;
 @synthesize favoriteColors;
-
+@synthesize hashedString;
 
 @synthesize null, nullDate, nullArray, nullSet, nullChild, nullNumber;
 

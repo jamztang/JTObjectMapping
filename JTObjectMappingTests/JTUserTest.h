@@ -21,6 +21,8 @@
 @property (nonatomic, retain) NSArray *users;
 @property (nonatomic, retain) NSSet *favoriteColors;
 
+@property (nonatomic, copy) NSString *hashedString;
+
 @property (nonatomic, copy) NSString *autoString;
 @property (nonatomic, retain) NSArray *autoArray;
 @property (nonatomic, retain) NSArray *nestedArray;

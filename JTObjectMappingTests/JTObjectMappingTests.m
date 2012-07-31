@@ -42,6 +42,9 @@
                  
                  // This turns into an NSSet
                  [[NSSet setWithObjects:@"blue", @"green", nil] allObjects], @"favorite_colors",
+                 
+                 // Setup hash for testing keypath
+                 [NSDictionary dictionaryWithObject:@"string" forKey:@"string"], @"hashed",
 
                  @"1970-01-01T00:00:00+0000", @"create_date",
                  
@@ -100,6 +103,9 @@
                                                 nil]], @"p_users",
                     // set mapping
                     [NSSet mappingWithKey:@"favoriteColors"], @"favorite_colors",
+                    
+                    // set keypath
+                    @"hashedString", @"hashed.string",
                     
                     // date mapping -- by format or since the epoch
                     [NSDate mappingWithKey:@"createDate"
@@ -205,6 +211,10 @@
     STAssertTrue([colors isKindOfClass:[NSSet class]], @"%@ != [NSSet class]", [colors class]);
     STAssertTrue([colors containsObject:@"green"], @"%@ should contain 'green'", colors);
     STAssertTrue([colors containsObject:@"blue"], @"%@ should contain 'blue'", colors);
+}
+
+- (void)testKeyPath {
+    STAssertEqualObjects(self.object.hashedString, @"string", nil, nil);
 }
 
 //- (void)testAutoMapping {
