@@ -31,6 +31,7 @@
 @property (nonatomic, copy) NSString *null;
 @property (nonatomic, copy) NSNumber *nullNumber;
 @property (nonatomic, copy) NSArray *nullArray;
+@property (nonatomic, copy) NSSet   *nullSet;
 @property (nonatomic, retain) NSDate *nullDate;
 @property (nonatomic, retain) JTSocialNetworkTest *nullChild;
 

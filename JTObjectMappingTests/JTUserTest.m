@@ -20,6 +20,6 @@
 @synthesize favoriteColors;
 
 
-@synthesize null, nullDate, nullArray, nullChild, nullNumber;
+@synthesize null, nullDate, nullArray, nullSet, nullChild, nullNumber;
 
 @end

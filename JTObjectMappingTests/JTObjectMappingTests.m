@@ -77,6 +77,7 @@
                  [NSNull null], @"null_date",
                  [NSNull null], @"null_child",
                  [NSNull null], @"null_array",
+                 [NSNull null], @"null_set",
                  [NSNull null], @"null_number",
 
                  nil];
@@ -120,6 +121,7 @@
                     [JTSocialNetworkTest mappingWithKey:@"nullChild"
                                                 mapping:socialNetworkMapping], @"null_child",
                     @"nullArray", @"null_array",
+                    @"nullSet", @"null_set",
                     @"nullNumber", @"null_number",
 
                     nil];
@@ -165,6 +167,7 @@
     STAssertNil(self.object.null, @"null should be mapped to nil", nil);
     STAssertNil(self.object.nullDate, @"nullDate should be mapped to nil", nil);
     STAssertNil(self.object.nullArray, @"nullArray should be mapped to nil", nil);
+    STAssertNil(self.object.nullSet, @"nullSet should be mapped to nil", nil);
     STAssertNil(self.object.nullChild, @"nullChild should be mapped to nil", nil);
     STAssertNil(self.object.nullNumber, @"nullNumber should be mapped to nil", nil);
 }
