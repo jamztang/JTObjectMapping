@@ -152,7 +152,10 @@
                     @"nullArray", @"null_array",
                     @"nullSet", @"null_set",
                     @"nullNumber", @"null_number",
-
+                    // missing auto-mapping -- this key doesn't exist in the json, which is fine
+                    @"missingString", @"missingString",
+                    // missing class-mapping -- this key doesn't exist in the json, which is fine
+                    [NSDate mappingWithKey:@"missingDate" divisorForSeconds:1], @"missingDate",
                     nil];
 
     self.object = [JTUserTest objectFromJSONObject:json mapping:mapping];
@@ -171,6 +174,7 @@
 //- (void)testPrintJSON {
 //    NSLog(@"%@", self.json);
 //}
+
 
 - (void)testTitle {
     STAssertTrue([self.object.title isEqual:@"Manager"], @"title = %@ fails to equal %@", self.object.title, @"Manager");
@@ -248,6 +252,12 @@
 - (void)testKeyPath {
     STAssertEqualObjects(self.object.hashedString, @"string", nil, nil);
 }
+
+- (void)testMissingJSON {
+    STAssertNil(self.object.missingString, @"missingString should be nil");
+    STAssertNil(self.object.missingDate, @"missingDate should be nil");
+}
+
 
 //- (void)testAutoMapping {
 //    STAssertEqualObjects(self.object.autoString, @"yes", nil, nil);

@@ -106,7 +106,10 @@
 #if ! JTOBJECTMAPPING_DISABLE_KEYPATH_SUPPORT
     [notMapped enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id value = [dict valueForKeyPath:key];
-        [self setValue:value forKey:obj];
+        // Only set the property value if we have one to set -- otherwise this will crash
+        if (value != nil) {
+            [self setValue:value forKey:obj];
+        }
     }];
 #endif
 
@@ -117,12 +120,18 @@
     return [JTMappings mappingWithKey:key targetClass:[self class] mapping:mapping];
 }
 
+/*
+ Instantiate and populate the properties of this class with the JTValidJSONResponse (NSDictionary).
+ If this is a dictionary or array, recurse into the json dict and create the corresponding child objects.
+ */
 + (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSDictionary *)mapping {
     id returnObject = nil;
     if ([object isKindOfClass:[NSDictionary class]]) {
+        // the json object is a dict -- create a new dict with the objects we can map from its contents
         returnObject = [[[[self class] alloc] init] autorelease];
         [returnObject setValueFromDictionary:(NSDictionary *)object mapping:mapping];
     } else if ([object isKindOfClass:[NSArray class]]) {
+        // the json object is an array -- create a new array with the objects we can map from its contents
         NSMutableArray *array = [NSMutableArray array];
         for (NSObject *dict in (NSArray *)object) {
             NSParameterAssert([dict isKindOfClass:[NSDictionary class]]);
