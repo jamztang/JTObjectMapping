@@ -106,7 +106,8 @@
 #if ! JTOBJECTMAPPING_DISABLE_KEYPATH_SUPPORT
     [notMapped enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id value = [dict valueForKeyPath:key];
-        // Only set the property value if we have one to set -- otherwise this will crash
+        // Only set the property value if we have one to set
+        // otherwise this will crash for custom object mappings
         if (value != nil) {
             [self setValue:value forKey:obj];
         }
