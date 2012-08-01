@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1197E87D15C6F79C006BC9F0 /* JTSetMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */; };
+		1197E89915C8549A006BC9F0 /* JTDataMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1197E89815C8549A006BC9F0 /* JTDataMappings.m */; };
 		1A23E1D71469B35D002BBB85 /* JPNestedArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */; };
 		1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F56C814168CC3007145BC /* JTDateMappings.m */; };
 		1A7E71C61415F96700AE157A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C51415F96700AE157A /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 /* Begin PBXFileReference section */
 		1197E87B15C6F79B006BC9F0 /* JTSetMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSetMappings.h; sourceTree = "<group>"; };
 		1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSetMappings.m; sourceTree = "<group>"; };
+		1197E89715C8549A006BC9F0 /* JTDataMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDataMappings.h; sourceTree = "<group>"; };
+		1197E89815C8549A006BC9F0 /* JTDataMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDataMappings.m; sourceTree = "<group>"; };
 		1A23E1D51469B35C002BBB85 /* JPNestedArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNestedArrayTest.h; sourceTree = "<group>"; };
 		1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNestedArrayTest.m; sourceTree = "<group>"; };
 		1A5F56C714168CC3007145BC /* JTDateMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDateMappings.h; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 				1A7E720A141605B300AE157A /* JTMappings.m */,
 				1A5F56C714168CC3007145BC /* JTDateMappings.h */,
 				1A5F56C814168CC3007145BC /* JTDateMappings.m */,
+				1197E89715C8549A006BC9F0 /* JTDataMappings.h */,
+				1197E89815C8549A006BC9F0 /* JTDataMappings.m */,
 				1197E87B15C6F79B006BC9F0 /* JTSetMappings.h */,
 				1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */,
 			);
@@ -320,6 +325,7 @@
 				1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */,
 				1A23E1D71469B35D002BBB85 /* JPNestedArrayTest.m in Sources */,
 				1197E87D15C6F79C006BC9F0 /* JTSetMappings.m in Sources */,
+				1197E89915C8549A006BC9F0 /* JTDataMappings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
