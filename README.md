@@ -50,7 +50,7 @@ Define necessary mappings, from a dictionary key to a property keyPath.
                     @"age", @"p_age",
                     @"childs", @"p_childs",                    
                     [NSDate mappingWithKey:@"createDate"
-                          dateFormatString:@"yyyy-MM-dd'T'hh:mm:ssZ"], @"create_date",
+                          dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"create_date",
                     nil];
 
 
