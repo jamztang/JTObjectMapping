@@ -14,6 +14,11 @@
 
 #define EIGHTEEN_YEARS_IN_SECONDS 567993600
 
+// when the unicode string is mapped with lossy ASCII the elipses character (0x2026) will convert to three periods
+#define DATA_STRING_UNICODE @"elipses are unicode characters…periods are not"
+#define DATA_STRING_ASCII   @"elipses are unicode characters...periods are not"
+
+
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
 
@@ -51,6 +56,12 @@
                  // eighteenth birthday in seconds since the epoch
                  [NSNumber numberWithInt:EIGHTEEN_YEARS_IN_SECONDS], @"eighteenth_birthday",
                  
+                 // NSData -- the mapping below will specify lossless utf8
+                 DATA_STRING_UNICODE, @"data",
+                 // NSData -- the mapping below will specify lossy ascii
+                 DATA_STRING_UNICODE, @"dataLossy",
+                 
+                 // auto string
                  @"yes", @"autoString",
                  [NSArray arrayWithObjects:
                   @"Object1",
@@ -92,6 +103,11 @@
     
     NSString *dateFormat = @"yyyy-MM-dd'T'hh:mm:ssZ";
     
+    // Define the mapping between JSON dictionary-keys to the object properties.
+    // Note how basic foundation types (NSString, NSDictionary, NSArray, NSSet, NSNumber)
+    // are automatically mapped if the json key is the same as the property name.
+    // You need to specify a mapping (as below) if the json key and objC property name are different,
+    // or if you want to map to a custom object (see the JTUserTest mapping below)
     self.mapping = [NSDictionary dictionaryWithObjectsAndKeys:
                     @"name", @"p_name",
                     @"title", @"p_title",
@@ -101,19 +117,26 @@
                                        mapping:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 @"name", @"p_name",
                                                 nil]], @"p_users",
-                    // set mapping
+                    // NSSet mapping
                     [NSSet mappingWithKey:@"favoriteColors"], @"favorite_colors",
                     
-                    // set keypath
+                    // NSSet keypath
                     @"hashedString", @"hashed.string",
                     
-                    // date mapping -- by format or since the epoch
+                    // NSDate mapping -- by format or since the epoch
                     [NSDate mappingWithKey:@"createDate"
                           dateFormatString:dateFormat], @"create_date",
-                    // 1==seconds, 1000==milliseconds
+                    // NSDate mapping with seconds since the epoch (1==seconds, 1000==milliseconds)
                     [NSDate mappingWithKey:@"eighteenthBirthday"
                          divisorForSeconds:1], @"eighteenth_birthday",
                     
+                    // NSData mapping
+                    [NSData mappingWithKey:@"data" usingEncoding:NSUTF8StringEncoding], @"data",
+                    // NSData mapping (lossy ascii)
+                    [NSData mappingWithKey:@"dataLossy" usingEncoding:NSASCIIStringEncoding allowLossy:YES], @"dataLossy",
+                    
+                    // This specifies a mapping a child object (JTSocialNetwork) and a child dictionary in the json dictionary
+                    // (it too uses a map of json keys to its properties, the `socialNetworkMapping` dictionary)
                     [JTSocialNetworkTest mappingWithKey:@"socialNetwork"
                                                 mapping:socialNetworkMapping], @"social_networks",
                     
@@ -186,6 +209,15 @@
 - (void)testEpochDate {
     NSDate *date18 = [NSDate dateWithTimeIntervalSince1970:EIGHTEEN_YEARS_IN_SECONDS];
     STAssertTrue([self.object.eighteenthBirthday isEqual:date18], @"date %@ != %@", self.object.eighteenthBirthday, date18);
+}
+
+- (void)testData {
+    // test lossless data -- will still contain the elipses (0x2026) character
+    NSString *notLossy = [[NSString alloc] initWithData:self.object.data encoding:NSUTF8StringEncoding];
+    STAssertTrue([DATA_STRING_UNICODE isEqualToString:notLossy], @"data string didn't convert");
+    // test lossy conversion to ascii -- the elipses will convert to three periods
+    NSString *lossy = [[NSString alloc] initWithData:self.object.dataLossy encoding:NSASCIIStringEncoding];
+    STAssertTrue([DATA_STRING_ASCII isEqualToString:lossy], @"data string didn't convert");
 }
 
 - (void)testChilds {

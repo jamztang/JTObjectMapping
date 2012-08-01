@@ -37,8 +37,14 @@
                 }
 
             } else {
-
-                if ([(NSObject *)mapsToValue isKindOfClass:[NSString class]]) {
+                if ([mapsToValue conformsToProtocol:@protocol(JTDataMappings)] && [(NSObject *)obj isKindOfClass:[NSString class]]) {
+                    // NSData mapping -- turn a string into NSData with the specified encoding
+                    // (we must do this check before basic NSString mapping, or it'll be mapped as string instead of data)
+                    id <JTDataMappings> map = (id <JTDataMappings>)mapsToValue;
+                    NSData *data = [obj dataUsingEncoding:map.stringEncoding allowLossyConversion:map.allowLossy];
+                    [self setValue:data forKey:key];
+                } else
+                    if ([(NSObject *)mapsToValue isKindOfClass:[NSString class]]) {
                     // string mapping
                     if ([obj isKindOfClass:[NSNull class]]) {
                         [self setValue:nil forKey:mapsToValue];
@@ -161,5 +167,23 @@
 + (id <JTSetMappings>)mappingWithKey:(NSString *)key {
     return [JTSetMappings mappingWithKey:key];
 }
+
+@end
+
+
+@implementation NSData (JTDataMappings)
+
++ (id <JTDataMappings>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy {
+    return [JTDataMappings mappingWithKey:key usingEncoding:stringEncoding allowLossy:lossy];
+}
+
+/*
+ Convenience method to match [NSString dataUsingEncoding:allowLossyConversion:] behavior, which is not lossy.
+ Reference: https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/doc/uid/20000154-dataUsingEncoding_
+ */
++ (id <JTDataMappings>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding {
+    return [JTDataMappings mappingWithKey:key usingEncoding:stringEncoding allowLossy:NO];
+}
+
 
 @end
