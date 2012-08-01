@@ -46,7 +46,7 @@
                  // Setup hash for testing keypath
                  [NSDictionary dictionaryWithObject:@"string" forKey:@"string"], @"hashed",
 
-                 @"1970-01-01T00:00:00+0000", @"create_date",
+                 @"1970-01-01T13:00:00+0000", @"create_date",
                  
                  // eighteenth birthday in seconds since the epoch
                  [NSNumber numberWithInt:EIGHTEEN_YEARS_IN_SECONDS], @"eighteenth_birthday",
@@ -90,7 +90,7 @@
                                           @"facebookID", @"facebook",
                                           nil];
     
-    NSString *dateFormat = @"yyyy-MM-dd'T'hh:mm:ssZ";
+    NSString *dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
     
     self.mapping = [NSDictionary dictionaryWithObjectsAndKeys:
                     @"name", @"p_name",
@@ -179,7 +179,7 @@
 }
 
 - (void)testCreateDate {
-    STAssertTrue([self.object.createDate isEqual:[NSDate dateWithTimeIntervalSince1970:0]], @"date %@ != %@", self.object.createDate, [NSDate dateWithTimeIntervalSince1970:0]);
+    STAssertTrue([self.object.createDate isEqual:[NSDate dateWithTimeIntervalSince1970:46800]], @"date %@ != %@", self.object.createDate, [NSDate dateWithTimeIntervalSince1970:46800]);
 }
 
 // Test date with seconds since Epoch
