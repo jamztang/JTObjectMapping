@@ -17,6 +17,7 @@
 @synthesize socialNetwork;
 @synthesize nestedArray;
 @synthesize eighteenthBirthday;
+@synthesize data, dataLossy;
 @synthesize favoriteColors;
 @synthesize hashedString;
 
