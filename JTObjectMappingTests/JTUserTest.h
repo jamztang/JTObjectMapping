@@ -28,6 +28,8 @@
 @property (nonatomic, copy) NSString *autoString;
 @property (nonatomic, retain) NSArray *autoArray;
 @property (nonatomic, retain) NSArray *nestedArray;
+@property (nonatomic, retain) NSArray *missingString;
+@property (nonatomic, retain) NSArray *missingDate;
 //@property (nonatomic, retain) JTSocialNetworkTest *autoSocialNetwork;
 
 @property (nonatomic, retain) JTSocialNetworkTest *socialNetwork;
