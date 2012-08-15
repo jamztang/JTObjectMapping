@@ -28,7 +28,7 @@
 - (void)setValueFromDictionary:(NSDictionary *)dict mapping:(NSDictionary *)mapping;
 + (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping;
 + (id)objectFromJSONObject:(id <JTValidJSONResponse>)object mapping:(NSDictionary *)mapping;
-- (void)didMapObjectFromJSON;
+- (void)didMapObjectFromJSON:(id<JTValidJSONResponse>)object;
 
 @end
 

@@ -17,10 +17,10 @@
     
     __block NSMutableDictionary *notMapped = [mapping mutableCopy];
 
-    [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {        
         id mapsToValue = [mapping objectForKey:key];
         if (mapsToValue == nil) {
-            // We wants to auto reference the NSDictionary key corresponding NSObject property key
+            // We want to auto reference the NSDictionary key corresponding NSObject property key
             // with the same name defined as in the NSObject subclass.
             if ([[self class] instancesRespondToSelector:NSSelectorFromString(key)]) {
                 mapsToValue = key;
@@ -37,33 +37,33 @@
                 }
 
             } else {
-                if ([mapsToValue conformsToProtocol:@protocol(JTDataMappings)] && [(NSObject *)obj isKindOfClass:[NSString class]]) {
+                if ([mapsToValue conformsToProtocol:@protocol(JTDataMappings)] && [obj isKindOfClass:[NSString class]]) {
                     // NSData mapping -- turn a string into NSData with the specified encoding
                     // (we must do this check before basic NSString mapping, or it'll be mapped as string instead of data)
                     id <JTDataMappings> map = (id <JTDataMappings>)mapsToValue;
                     NSData *data = [obj dataUsingEncoding:map.stringEncoding allowLossyConversion:map.allowLossy];
                     [self setValue:data forKey:key];
-                } else
-                    if ([(NSObject *)mapsToValue isKindOfClass:[NSString class]]) {
+                } else if ([mapsToValue isKindOfClass:[NSString class]]) {
                     // string mapping
                     if ([obj isKindOfClass:[NSNull class]]) {
                         [self setValue:nil forKey:mapsToValue];
                     } else {
                         [self setValue:obj forKey:mapsToValue];
                     }
-                } else if ([mapsToValue conformsToProtocol:@protocol(JTSetMappings)] && [(NSObject *)obj isKindOfClass:[NSArray class]]) {
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTSetMappings)] && [obj isKindOfClass:[NSArray class]]) {
                     // support turning NSArrays into a NSSets
                     id <JTSetMappings> map = (id <JTSetMappings>)mapsToValue;
                     NSSet *set = [NSSet setWithArray:obj];
                     [self setValue:set forKey:map.key];
-                } else if ([mapsToValue conformsToProtocol:@protocol(JTMappings)] && [(NSObject *)obj isKindOfClass:[NSDictionary class]]) {
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTMappings)] && [obj isKindOfClass:[NSDictionary class]]) {
                     // dictionary mapping
                     id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
                     NSObject *targetObject = [[mappings.targetClass alloc] init];
                     [targetObject setValueFromDictionary:obj mapping:mappings.mapping];
+                    [targetObject didMapObjectFromJSON:obj];
                     [self setValue:targetObject forKey:mappings.key];
                     [targetObject release];
-                } else if ([mapsToValue conformsToProtocol:@protocol(JTDateMappings)] && [(NSObject *)obj isKindOfClass:[NSString class]]) {
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTDateMappings)] && [obj isKindOfClass:[NSString class]]) {
                     // date mapping by string formatting
                     id <JTDateMappings> mappings = (id <JTDateMappings>)mapsToValue;
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -71,15 +71,18 @@
                     NSDate *date = [formatter dateFromString:obj];
                     [formatter release];
                     [self setValue:date forKey:mappings.key];
-                } else if ([mapsToValue conformsToProtocol:@protocol(JTDateEpochMappings)] && [(NSObject *)obj isKindOfClass:[NSNumber class]]) {
+                } else if ([mapsToValue conformsToProtocol:@protocol(JTDateEpochMappings)] && ([obj isKindOfClass:[NSNumber class]] || [obj isKindOfClass:[NSString class]])) {
                     // date mapping by some fraction of seconds since the epoch
                     id <JTDateEpochMappings> map = (id <JTDateEpochMappings>)mapsToValue;
-                    CGFloat secondsFactor = [(NSNumber *)obj floatValue];
-                    NSTimeInterval secSinceEpoch = secondsFactor / map.divisorForSeconds; // convert into desired unit of seconds, 1000==milliseconds
+                    NSTimeInterval secondsFactor = [obj doubleValue];
+                    // convert into desired unit of seconds, but be sure to round if necessary, eg. 1000==milliseconds
+                    // (otherwise 19999 milliseconds will be off by a second because it will be rounded down instead of up)
+                    // Reference: http://stackoverflow.com/a/4926468/168594
+                    NSTimeInterval secSinceEpoch = (secondsFactor + map.divisorForSeconds - 1) / map.divisorForSeconds;
                     // create the date and assign it to the object we're mapping
                     NSDate *date = [NSDate dateWithTimeIntervalSince1970:secSinceEpoch];
                     [self setValue:date forKey:map.key];
-                } else if ([(NSObject *)obj isKindOfClass:[NSArray class]]) {
+                } else if ([obj isKindOfClass:[NSArray class]]) {
                     if ([mapsToValue conformsToProtocol:@protocol(JTMappings)]) {
                         id <JTMappings> mappings = (id <JTMappings>)mapsToValue;
                         NSObject *object = [mappings.targetClass objectFromJSONObject:obj mapping:mappings.mapping];
@@ -92,7 +95,7 @@
                         [self setValue:[NSArray arrayWithArray:array] forKey:mapsToValue];
                     }
                 } else {
-                    NSAssert2(NO, @"[mapsToValue class]: %@, [obj class]: %@ is not handled", NSStringFromClass([mapsToValue class]), NSStringFromClass([obj class])); 
+                    NSAssert3(NO, @"[mapsToValue class]: %@, [obj class]: %@ is not handled for key `%@`", NSStringFromClass([mapsToValue class]), NSStringFromClass([obj class]), key);
                 }
 
             }
@@ -117,16 +120,19 @@
     [notMapped release];
 }
 
-+ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping {
++ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
     return [JTMappings mappingWithKey:key targetClass:[self class] mapping:mapping];
 }
+
 
 /*
  Instantiate and populate the properties of this class with the JTValidJSONResponse (NSDictionary).
  If this is a dictionary or array, recurse into the json dict and create the corresponding child objects.
  */
-+ (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSDictionary *)mapping {
++ (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSMutableDictionary *)mapping {
     id returnObject = nil;
+
+
     if ([object isKindOfClass:[NSDictionary class]]) {
         // the json object is a dict -- create a new dict with the objects we can map from its contents
         returnObject = [[[[self class] alloc] init] autorelease];
@@ -144,19 +150,19 @@
 
     // let objects do post-mapping validation, etc
     // (it's safe to call without checking respondsToSelector:, because we have an no-op method defined in this category)
-    [returnObject didMapObjectFromJSON];
+    [returnObject didMapObjectFromJSON:object];
     return returnObject;
 }
 
 // Override this in other classes to perform post-mapping validation/sanitization, etc.
-- (void)didMapObjectFromJSON {}
+- (void)didMapObjectFromJSON:(id<JTValidJSONResponse>)object {}
 
 @end
 
 
 @implementation NSDate (JTObjectMapping)
 
-+ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping {
++ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
     [NSException raise:@"JTObjectMappingException" format:@"Please use +[NSDate mappingWithKey:dateFormatString:] instead."];
     return nil;
 }
