@@ -31,7 +31,7 @@
 @implementation JTDateEpochMappings
 @synthesize key, divisorForSeconds;
 
-+ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
++ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(NSTimeInterval)divisorForSeconds {
     JTDateEpochMappings *epochMapping = [[JTDateEpochMappings alloc] init];
     epochMapping.key = key;
     epochMapping.divisorForSeconds = divisorForSeconds;
