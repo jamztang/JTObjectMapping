@@ -13,10 +13,10 @@
 @implementation JTMappings
 @synthesize key = _key, mapping, targetClass;
 
-+ (id <JTMappings>)mappingWithKey:(NSString *)aKey targetClass:(Class)aClass mapping:(NSDictionary *)aMapping {
++ (id <JTMappings>)mappingWithKey:(NSString *)aKey targetClass:(Class)aClass mapping:(NSMutableDictionary *)aMapping {
     JTMappings *obj = [[JTMappings alloc] init];
     obj.key         = aKey;
-    obj.mapping     = aMapping;
+    obj.mapping     = [aMapping mutableCopy];
     obj.targetClass = aClass;
     return [obj autorelease];
 }

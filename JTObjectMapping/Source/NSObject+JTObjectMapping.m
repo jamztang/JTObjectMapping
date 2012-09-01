@@ -21,7 +21,7 @@
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id newKey = [mapping objectForKey:key];
         if (newKey == nil) {
-            // We wants to auto reference the NSDictionary key corresponding NSObject property key
+            // We want to auto reference the NSDictionary key corresponding NSObject property key
             // with the same name defined as in the NSObject subclass.
             if ([[self class] instancesRespondToSelector:NSSelectorFromString(key)]) {
                 newKey = key;
@@ -112,16 +112,19 @@
     [notMapped release];
 }
 
-+ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping {
++ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
     return [JTMappings mappingWithKey:key targetClass:[self class] mapping:mapping];
 }
+
 
 /*
  Instantiate and populate the properties of this class with the JTValidJSONResponse (NSDictionary).
  If this is a dictionary or array, recurse into the json dict and create the corresponding child objects.
  */
-+ (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSDictionary *)mapping {
++ (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSMutableDictionary *)mapping {
     id returnObject = nil;
+
+
     if ([object isKindOfClass:[NSDictionary class]]) {
         // the json object is a dict -- create a new dict with the objects we can map from its contents
         returnObject = [[[[self class] alloc] init] autorelease];
@@ -139,12 +142,12 @@
 
     // let objects do post-mapping validation, etc
     // (it's safe to call without checking respondsToSelector:, because we have an no-op method defined in this category)
-    [returnObject didMapObjectFromJSON];
+    [returnObject didMapObjectFromJSON:object];
     return returnObject;
 }
 
 // Override this in other classes to perform post-mapping validation/sanitization, etc.
-- (void)didMapObjectFromJSON {}
+- (void)didMapObjectFromJSON:(id<JTValidJSONResponse>)object {}
 
 - (void)didFailedWhenMappingValue:(NSObject *)value toKey:(NSString *)key originalKey:(NSString *)originalKey {
 #if JTOBJECTMAPPING_SHOW_LOG
@@ -157,7 +160,7 @@
 
 @implementation NSDate (JTObjectMapping)
 
-+ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping {
++ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
     [NSException raise:@"JTObjectMappingException" format:@"Please use +[NSDate mappingWithKey:dateFormatString:] instead."];
     return nil;
 }

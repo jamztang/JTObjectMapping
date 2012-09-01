@@ -32,14 +32,15 @@
 @protocol JTDateEpochMappings <NSObject>
 
 - (NSString *)key;
-- (CGFloat)divisorForSeconds;
+- (NSTimeInterval)divisorForSeconds;
+
 
 @end
 
 @interface JTDateEpochMappings : NSObject <JTDateEpochMappings, JTValidMappingKey>
 @property (nonatomic, copy) NSString *key;
-@property (nonatomic) CGFloat divisorForSeconds;
+@property (nonatomic) NSTimeInterval divisorForSeconds;
 // You must specify the fraction of seconds you want: 1==seconds, 1000==milliseconds, etc.
-+ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds;
++ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(NSTimeInterval)divisorForSeconds;
 
 @end

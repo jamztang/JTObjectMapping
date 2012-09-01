@@ -30,7 +30,7 @@
 + (id)objectFromJSONObject:(id <JTValidJSONResponse>)object mapping:(NSDictionary *)mapping;
 
 // Override in subclasses if needed
-- (void)didMapObjectFromJSON;
+- (void)didMapObjectFromJSON:(id<JTValidJSONResponse>)object;
 
 - (void)didFailedWhenMappingValue:(NSObject *)value toKey:(NSString *)key originalKey:(NSString *)originalKey;
 

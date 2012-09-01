@@ -59,7 +59,7 @@
 @implementation JTDateEpochMappings
 @synthesize key = _key, divisorForSeconds;
 
-+ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
++ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(NSTimeInterval)divisorForSeconds {
     JTDateEpochMappings *epochMapping = [[JTDateEpochMappings alloc] init];
     epochMapping.key = key;
     epochMapping.divisorForSeconds = divisorForSeconds;
@@ -76,11 +76,15 @@
                 forKey:(NSString **)key {
     
     if ([oldValue isKindOfClass:[NSNumber class]]) {
-        CGFloat secondsFactor = [(NSNumber *)oldValue floatValue];
-        NSTimeInterval secSinceEpoch = secondsFactor / self.divisorForSeconds; // convert into desired unit of seconds, 1000==milliseconds
+
+        NSTimeInterval secondsFactor = [(NSNumber *)oldValue doubleValue];
+        // convert into desired unit of seconds, but be sure to round if necessary, eg. 1000==milliseconds
+        // (otherwise 19999 milliseconds will be off by a second because it will be rounded down instead of up)
+        // Reference: http://stackoverflow.com/a/4926468/168594
+        NSTimeInterval secSinceEpoch = (secondsFactor + self.divisorForSeconds - 1) / self.divisorForSeconds;
         // create the date and assign it to the object we're mapping
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:secSinceEpoch];
-        
+
         *newValue = date;
         *key = self.key;
 
