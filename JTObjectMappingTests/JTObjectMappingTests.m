@@ -49,7 +49,11 @@
                  [[NSSet setWithObjects:@"blue", @"green", nil] allObjects], @"favorite_colors",
                  
                  // Setup hash for testing keypath
-                 [NSDictionary dictionaryWithObject:@"string" forKey:@"string"], @"hashed",
+                 [NSDictionary dictionaryWithObjectsAndKeys:
+                  @"string", @"string",
+                  [NSDictionary dictionaryWithObjectsAndKeys:
+                   @"John", @"p_name", nil], @"user",
+                  nil], @"hashed",
 
                  @"1970-01-01T13:00:00+0000", @"create_date",
                  
@@ -122,6 +126,10 @@
                     
                     // NSSet keypath
                     @"hashedString", @"hashed.string",
+                    [JTUserTest mappingWithKey:@"hashedUser"
+                                       mapping:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                @"name", @"p_name",
+                                                nil]], @"hashed.user",
                     
                     // NSDate mapping -- by format or since the epoch
                     [NSDate mappingWithKey:@"createDate"
@@ -251,6 +259,11 @@
 
 - (void)testKeyPath {
     STAssertEqualObjects(self.object.hashedString, @"string", nil, nil);
+    
+    JTUserTest *user = [[JTUserTest alloc] init];
+    user.name        = @"John";
+
+    STAssertEqualObjects(self.object.hashedUser.name, user.name, nil, nil);
 }
 
 - (void)testMissingJSON {

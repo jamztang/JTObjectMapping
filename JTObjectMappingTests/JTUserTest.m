@@ -20,6 +20,7 @@
 @synthesize data, dataLossy;
 @synthesize favoriteColors;
 @synthesize hashedString;
+@synthesize hashedUser;
 @synthesize missingDate, missingString;
 @synthesize null, nullDate, nullArray, nullSet, nullChild, nullNumber;
 

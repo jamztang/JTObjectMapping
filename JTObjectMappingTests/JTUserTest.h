@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSSet *favoriteColors;
 
 @property (nonatomic, copy) NSString *hashedString;
+@property (nonatomic, retain) JTUserTest *hashedUser;
 
 @property (nonatomic, copy) NSString *autoString;
 @property (nonatomic, retain) NSArray *autoArray;
