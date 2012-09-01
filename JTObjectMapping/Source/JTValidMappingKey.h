@@ -7,18 +7,15 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "JTValidMappingKey.h"
 
-@protocol JTSetMappings <NSObject, JTValidMappingKey>
+@protocol JTValidMappingKey <NSObject>
 
-- (NSString *)key;
+- (BOOL)transformValue:(NSObject *)oldValue
+               toValue:(NSObject **)newValue
+                forKey:(NSString **)key;
 
 @end
 
-@interface JTSetMappings : NSObject <JTSetMappings>
-
-@property (nonatomic, copy) NSString *key;
-
-+ (id <JTSetMappings>)mappingWithKey:(NSString *)key;
+@interface NSString (JTValidMappingKey) <JTValidMappingKey>
 
 @end

@@ -7,9 +7,11 @@
  */
 
 #import "JTMappings.h"
+#import "NSObject+JTObjectMapping.h"
+#import "JTValidMappingKey.h"
 
 @implementation JTMappings
-@synthesize key, mapping, targetClass;
+@synthesize key = _key, mapping, targetClass;
 
 + (id <JTMappings>)mappingWithKey:(NSString *)aKey targetClass:(Class)aClass mapping:(NSDictionary *)aMapping {
     JTMappings *obj = [[JTMappings alloc] init];
@@ -24,6 +26,40 @@
     self.mapping = nil;
     self.targetClass = nil;
     [super dealloc];
+}
+
+- (BOOL)transformValue:(NSObject *)oldValue
+               toValue:(NSObject **)newValue
+                forKey:(NSString **)key {
+    
+    if ([oldValue isKindOfClass:[NSArray class]]) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSDictionary *dict in (NSArray *)oldValue) {
+            id obj = [self.targetClass objectFromJSONObject:dict mapping:self.mapping];
+            [array addObject:obj];
+        }
+
+        *newValue = array;
+        *key      = self.key;
+
+        return YES;
+
+    } else if ([oldValue isKindOfClass:[NSDictionary class]]) {
+        id obj = [self.targetClass objectFromJSONObject:(NSDictionary *)oldValue mapping:self.mapping];
+        
+        *newValue = obj;
+        *key      = self.key;
+
+        return YES;
+    } else if ([oldValue isKindOfClass:[NSNull class]]) {
+        
+        *newValue = nil;
+        *key      = self.key;
+
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

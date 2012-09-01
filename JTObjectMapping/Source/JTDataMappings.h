@@ -7,8 +7,9 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "JTValidMappingKey.h"
 
-@protocol JTDataMappings <NSObject>
+@protocol JTDataMappings <NSObject, JTValidMappingKey>
 
 - (NSString *)key;
 - (NSStringEncoding)stringEncoding;

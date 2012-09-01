@@ -10,6 +10,7 @@
 		1197E87D15C6F79C006BC9F0 /* JTSetMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */; };
 		1197E89915C8549A006BC9F0 /* JTDataMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1197E89815C8549A006BC9F0 /* JTDataMappings.m */; };
 		1A23E1D71469B35D002BBB85 /* JPNestedArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */; };
+		1A2503E315F26AE500490DAD /* JTValidMappingKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2503E215F26AE500490DAD /* JTValidMappingKey.m */; };
 		1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F56C814168CC3007145BC /* JTDateMappings.m */; };
 		1A7E71C61415F96700AE157A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C51415F96700AE157A /* UIKit.framework */; };
 		1A7E71C81415F96700AE157A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7E71C71415F96700AE157A /* Foundation.framework */; };
@@ -51,6 +52,8 @@
 		1197E89815C8549A006BC9F0 /* JTDataMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDataMappings.m; sourceTree = "<group>"; };
 		1A23E1D51469B35C002BBB85 /* JPNestedArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNestedArrayTest.h; sourceTree = "<group>"; };
 		1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNestedArrayTest.m; sourceTree = "<group>"; };
+		1A2503E115F26AE500490DAD /* JTValidMappingKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTValidMappingKey.h; sourceTree = "<group>"; };
+		1A2503E215F26AE500490DAD /* JTValidMappingKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTValidMappingKey.m; sourceTree = "<group>"; };
 		1A5F56C714168CC3007145BC /* JTDateMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDateMappings.h; sourceTree = "<group>"; };
 		1A5F56C814168CC3007145BC /* JTDateMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDateMappings.m; sourceTree = "<group>"; };
 		1A7E71C11415F96700AE157A /* JTObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +209,8 @@
 				1197E89815C8549A006BC9F0 /* JTDataMappings.m */,
 				1197E87B15C6F79B006BC9F0 /* JTSetMappings.h */,
 				1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */,
+				1A2503E115F26AE500490DAD /* JTValidMappingKey.h */,
+				1A2503E215F26AE500490DAD /* JTValidMappingKey.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				1A23E1D71469B35D002BBB85 /* JPNestedArrayTest.m in Sources */,
 				1197E87D15C6F79C006BC9F0 /* JTSetMappings.m in Sources */,
 				1197E89915C8549A006BC9F0 /* JTDataMappings.m in Sources */,
+				1A2503E315F26AE500490DAD /* JTValidMappingKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +438,11 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					JTOBJECTMAPPING_SHOW_LOG,
+				);
 				INFOPLIST_FILE = "JTObjectMapping/JTObjectMapping-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -9,9 +9,7 @@
 #import "JTDataMappings.h"
 
 @implementation JTDataMappings
-@synthesize key, stringEncoding, allowLossy;
-
-
+@synthesize key = _key, stringEncoding, allowLossy;
 
 /*
  Mapping that allows you to specify NSData the parameters.
@@ -28,6 +26,28 @@
 - (void)dealloc {
     self.key = nil;
     [super dealloc];
+}
+
+- (BOOL)transformValue:(NSObject *)oldValue
+               toValue:(NSObject **)newValue
+                forKey:(NSString **)key {
+
+    if ([oldValue isKindOfClass:[NSString class]]) {
+        *newValue   = [(NSString *)oldValue dataUsingEncoding:self.stringEncoding
+                             allowLossyConversion:self.allowLossy];
+        *key        = self.key;
+
+        return YES;
+
+    } else if ([oldValue isKindOfClass:[NSNull class]]) {
+        
+        *newValue = nil;
+        *key      = self.key;
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

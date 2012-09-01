@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol JTValidMappingKey;
 
-@protocol JTMappings <NSObject>
+@protocol JTMappings <NSObject, JTValidMappingKey>
 
 - (NSString *)key;
 - (NSDictionary *)mapping;

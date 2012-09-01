@@ -7,6 +7,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "JTValidMappingKey.h"
 
 @protocol JTDateMappings <NSObject>
 
@@ -16,7 +17,7 @@
 @end
 
 
-@interface JTDateMappings : NSObject <JTDateMappings>
+@interface JTDateMappings : NSObject <JTDateMappings, JTValidMappingKey>
 
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic, copy) NSString *dateFormatString;
@@ -35,7 +36,7 @@
 
 @end
 
-@interface JTDateEpochMappings : NSObject <JTDateEpochMappings>
+@interface JTDateEpochMappings : NSObject <JTDateEpochMappings, JTValidMappingKey>
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic) CGFloat divisorForSeconds;
 // You must specify the fraction of seconds you want: 1==seconds, 1000==milliseconds, etc.

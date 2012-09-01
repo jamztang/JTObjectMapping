@@ -9,7 +9,7 @@
 #import "JTSetMappings.h"
 
 @implementation JTSetMappings
-@synthesize key;
+@synthesize key = _key;
 
 + (id <JTSetMappings>)mappingWithKey:(NSString *)key {
     JTSetMappings *map = [[JTSetMappings alloc] init];
@@ -20,6 +20,28 @@
 - (void)dealloc {
     self.key = nil;
     [super dealloc];
+}
+
+- (BOOL)transformValue:(NSObject *)oldValue
+               toValue:(NSObject **)newValue
+                forKey:(NSString **)key {
+
+    if ([oldValue isKindOfClass:[NSArray class]]) {
+        
+        *newValue = [NSSet setWithArray:(NSArray *)oldValue];
+        *key      = self.key;
+
+        return YES;
+
+    } else if ([oldValue isKindOfClass:[NSNull class]]) {
+        
+        *newValue = nil;
+        *key      = self.key;
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end
