@@ -83,6 +83,9 @@ For more detailed usage, see **JTObjectMappingTests.m**, will be adding more det
 Update Logs
 -----------
 
+v1.1
+- Refactored JTObjectMapping. Now extending custom mappings are much more cleaner.
+
 v1.0.7
 - Added JTSetMapping and JTDateEpochMappings, thanks to [@zcharter][] for making this happen!
 
