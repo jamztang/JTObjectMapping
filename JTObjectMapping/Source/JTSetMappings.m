@@ -8,10 +8,19 @@
 
 #import "JTSetMappings.h"
 
+@interface JTSetMappings : NSObject <JTValidMappingKey>
+
+@property (nonatomic, copy) NSString *key;
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key;
+
+@end
+
+
 @implementation JTSetMappings
 @synthesize key = _key;
 
-+ (id <JTSetMappings>)mappingWithKey:(NSString *)key {
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key {
     JTSetMappings *map = [[JTSetMappings alloc] init];
     map.key = key;
     return [map autorelease];
@@ -42,6 +51,17 @@
     }
     
     return NO;
+}
+
+@end
+
+
+#pragma mark -
+
+@implementation NSSet (JTValidMappingKey)
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key {
+    return [JTSetMappings mappingWithKey:key];
 }
 
 @end

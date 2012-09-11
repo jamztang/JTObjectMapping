@@ -9,16 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "JTValidMappingKey.h"
 
-@protocol JTSetMappings <NSObject, JTValidMappingKey>
+@interface NSSet (JTValidMappingKey)
 
-- (NSString *)key;
-
-@end
-
-@interface JTSetMappings : NSObject <JTSetMappings>
-
-@property (nonatomic, copy) NSString *key;
-
-+ (id <JTSetMappings>)mappingWithKey:(NSString *)key;
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key;
 
 @end

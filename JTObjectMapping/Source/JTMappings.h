@@ -7,27 +7,11 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "JTValidMappingKey.h"
 
-@protocol JTValidMappingKey;
+@interface NSObject (JTValidMappingKey)
 
-@protocol JTMappings <NSObject, JTValidMappingKey>
-
-- (NSString *)key;
-- (NSMutableDictionary *)mapping;
-- (Class)targetClass;
-
-@end
-
-
-
-@interface JTMappings : NSObject <JTMappings>
-
-@property (nonatomic, retain) NSString *key;
-@property (nonatomic, retain) NSMutableDictionary *mapping;
-@property (nonatomic, assign) Class targetClass;
-
-+ (id <JTMappings>)mappingWithKey:(NSString *)aKey
-                      targetClass:(Class)aClass
-                          mapping:(NSMutableDictionary *)aMapping;
+// Handly method for + [JTMappings mappingWithKey:targetClass:mapping:]
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key mapping:(NSDictionary *)mapping;
 
 @end

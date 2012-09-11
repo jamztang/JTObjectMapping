@@ -8,13 +8,25 @@
 
 #import "JTDataMappings.h"
 
+
+@interface JTDataMappings : NSObject <JTValidMappingKey>
+
+@property (nonatomic, copy) NSString *key;
+@property (nonatomic) NSStringEncoding stringEncoding;
+@property (nonatomic) BOOL allowLossy;
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy;
+
+@end
+
+
 @implementation JTDataMappings
 @synthesize key = _key, stringEncoding, allowLossy;
 
 /*
  Mapping that allows you to specify NSData the parameters.
  */
-+ (id <JTDataMappings>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy {
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy {
     JTDataMappings *dataMapping = [[JTDataMappings alloc] init];
     dataMapping.stringEncoding = stringEncoding;
     dataMapping.key = key;
@@ -51,3 +63,23 @@
 }
 
 @end
+
+
+
+@implementation NSData (JTValidMappingKey)
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy {
+    return [JTDataMappings mappingWithKey:key usingEncoding:stringEncoding allowLossy:lossy];
+}
+
+/*
+ Convenience method to match [NSString dataUsingEncoding:allowLossyConversion:] behavior, which is not lossy.
+ Reference: https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/doc/uid/20000154-dataUsingEncoding_
+ */
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding {
+    return [JTDataMappings mappingWithKey:key usingEncoding:stringEncoding allowLossy:NO];
+}
+
+
+@end
+

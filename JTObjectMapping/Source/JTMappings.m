@@ -8,12 +8,23 @@
 
 #import "JTMappings.h"
 #import "NSObject+JTObjectMapping.h"
-#import "JTValidMappingKey.h"
+
+@interface JTMappings : NSObject <JTValidMappingKey>
+
+@property (nonatomic, retain) NSString *key;
+@property (nonatomic, retain) NSMutableDictionary *mapping;
+@property (nonatomic, assign) Class targetClass;
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)aKey
+                             targetClass:(Class)aClass
+                                 mapping:(NSMutableDictionary *)aMapping;
+
+@end
 
 @implementation JTMappings
 @synthesize key = _key, mapping, targetClass;
 
-+ (id <JTMappings>)mappingWithKey:(NSString *)aKey targetClass:(Class)aClass mapping:(NSMutableDictionary *)aMapping {
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)aKey targetClass:(Class)aClass mapping:(NSMutableDictionary *)aMapping {
     JTMappings *obj = [[JTMappings alloc] init];
     obj.key         = aKey;
     obj.mapping     = [aMapping mutableCopy];
@@ -60,6 +71,16 @@
     }
     
     return NO;
+}
+
+@end
+
+#pragma mark -
+
+@implementation NSObject (JTValidMappingKey)
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
+    return [JTMappings mappingWithKey:key targetClass:[self class] mapping:mapping];
 }
 
 @end

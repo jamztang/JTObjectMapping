@@ -119,10 +119,6 @@
     [notMapped release];
 }
 
-+ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
-    return [JTMappings mappingWithKey:key targetClass:[self class] mapping:mapping];
-}
-
 
 /*
  Instantiate and populate the properties of this class with the JTValidJSONResponse (NSDictionary).
@@ -153,6 +149,10 @@
     return returnObject;
 }
 
+@end
+
+@implementation NSObject (JTObjectMappingSubclasses)
+
 // Override this in other classes to perform post-mapping validation/sanitization, etc.
 - (void)didMapObjectFromJSON:(id<JTValidJSONResponse>)object {}
 
@@ -161,51 +161,6 @@
     NSLog(@"didFailedWhenMappingValue:%@ toKey:%@ originalKey:%@", value, key, originalKey);
 #endif
 }
-
-@end
-
-
-@implementation NSDate (JTObjectMapping)
-
-+ (id <JTMappings>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
-    [NSException raise:@"JTObjectMappingException" format:@"Please use +[NSDate mappingWithKey:dateFormatString:] instead."];
-    return nil;
-}
-
-+ (id <JTDateMappings>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString {
-    return [JTDateMappings mappingWithKey:key dateFormatString:dateFormatString];
-}
-
-+ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
-    return [JTDateEpochMappings mappingWithKey:key divisorForSeconds:divisorForSeconds];
-}
-
-@end
-
-
-@implementation NSSet (JTObjectMapping)
-
-+ (id <JTSetMappings>)mappingWithKey:(NSString *)key {
-    return [JTSetMappings mappingWithKey:key];
-}
-
-@end
-
-
-@implementation NSData (JTDataMappings)
-
-+ (id <JTDataMappings>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy {
-    return [JTDataMappings mappingWithKey:key usingEncoding:stringEncoding allowLossy:lossy];
-}
-
-/*
- Convenience method to match [NSString dataUsingEncoding:allowLossyConversion:] behavior, which is not lossy.
- Reference: https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/doc/uid/20000154-dataUsingEncoding_
- */
-+ (id <JTDataMappings>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding {
-    return [JTDataMappings mappingWithKey:key usingEncoding:stringEncoding allowLossy:NO];
-}
-
 
 @end
 

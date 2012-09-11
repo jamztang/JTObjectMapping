@@ -8,10 +8,33 @@
 
 #import "JTDateMappings.h"
 
+
+@interface JTDateMappings : NSObject <JTValidMappingKey>
+
+@property (nonatomic, copy) NSString *key;
+@property (nonatomic, copy) NSString *dateFormatString;
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString;
+
+@end
+
+
+// For epoch dates in (some fraction) of seconds
+
+@interface JTDateEpochMappings : NSObject <JTValidMappingKey>
+@property (nonatomic, copy) NSString *key;
+@property (nonatomic) NSTimeInterval divisorForSeconds;
+// You must specify the fraction of seconds you want: 1==seconds, 1000==milliseconds, etc.
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(NSTimeInterval)divisorForSeconds;
+
+@end
+
+
+
 @implementation JTDateMappings
 @synthesize dateFormatString, key = _key;
 
-+ (id <JTDateMappings>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString {
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString {
     JTDateMappings *dateMappings = [[JTDateMappings alloc] init];
     dateMappings.dateFormatString = dateFormatString;
     dateMappings.key              = key;
@@ -59,7 +82,7 @@
 @implementation JTDateEpochMappings
 @synthesize key = _key, divisorForSeconds;
 
-+ (id <JTDateEpochMappings>)mappingWithKey:(NSString *)key divisorForSeconds:(NSTimeInterval)divisorForSeconds {
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(NSTimeInterval)divisorForSeconds {
     JTDateEpochMappings *epochMapping = [[JTDateEpochMappings alloc] init];
     epochMapping.key = key;
     epochMapping.divisorForSeconds = divisorForSeconds;
@@ -103,3 +126,23 @@
 }
 
 @end
+
+#pragma mark -
+
+@implementation NSDate (JTValidMappingKey)
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key mapping:(NSMutableDictionary *)mapping {
+    [NSException raise:@"JTObjectMappingException" format:@"Please use +[NSDate mappingWithKey:dateFormatString:] instead."];
+    return nil;
+}
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString {
+    return [JTDateMappings mappingWithKey:key dateFormatString:dateFormatString];
+}
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
+    return [JTDateEpochMappings mappingWithKey:key divisorForSeconds:divisorForSeconds];
+}
+
+@end
+

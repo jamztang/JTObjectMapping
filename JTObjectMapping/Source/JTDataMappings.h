@@ -9,21 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "JTValidMappingKey.h"
 
-@protocol JTDataMappings <NSObject, JTValidMappingKey>
+@interface NSData (JTValidMappingKey)
 
-- (NSString *)key;
-- (NSStringEncoding)stringEncoding;
-- (BOOL)allowLossy;
+// Handly method for +[JTDataMappings mappingWithKey:usingEncoding:allowLossy:]
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy;
 
-@end
-
-
-@interface JTDataMappings : NSObject <JTDataMappings>
-
-@property (nonatomic, copy) NSString *key;
-@property (nonatomic) NSStringEncoding stringEncoding;
-@property (nonatomic) BOOL allowLossy;
-
-+ (id <JTDataMappings>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding allowLossy:(BOOL)lossy;
+// convenience method
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key usingEncoding:(NSStringEncoding)stringEncoding;
 
 @end
