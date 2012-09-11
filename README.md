@@ -85,6 +85,7 @@ Update Logs
 
 v1.1
 - Refactored JTObjectMapping. Now extending custom mappings are much more cleaner.
+- Proper keyPath support.
 
 v1.0.7
 - Added JTSetMapping and JTDateEpochMappings, thanks to [@zcharter][] for making this happen!

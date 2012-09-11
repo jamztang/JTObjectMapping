@@ -73,7 +73,7 @@
     }];
 
     // Likely to be keyPath, enumerate and try add to our object
-    // Could cause unexpected result if obj [dict valueForKeyPath:key] is not NSString
+    // We should already have proper keyPath support since v1.1
 #if ! JTOBJECTMAPPING_DISABLE_KEYPATH_SUPPORT
     [notMapped enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 
