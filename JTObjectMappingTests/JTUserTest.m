@@ -8,6 +8,10 @@
 
 #import "JTUserTest.h"
 
+@interface JTUserTest ()
+@property (nonatomic, copy) NSString *privateCopy;
+@end
+
 @implementation JTUserTest
 @synthesize name, title, age;
 @synthesize createDate;
@@ -23,5 +27,6 @@
 @synthesize hashedUser;
 @synthesize missingDate, missingString;
 @synthesize null, nullDate, nullArray, nullSet, nullChild, nullNumber;
+@synthesize desc, readonly, readonlyCopy, privateCopy;
 
 @end

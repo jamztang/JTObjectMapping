@@ -98,6 +98,14 @@
                  [NSNull null], @"null_set",
                  [NSNull null], @"null_number",
 
+                 // Test preserved keywords
+                 @"Description", @"description",
+
+                 // Test readonly properties
+                 @"Readonly", @"readonly",
+                 @"ReadonlyCopy", @"readonlyCopy",
+                 @"PrivateCopy", @"privateCopy",
+
                  nil];
 
     NSDictionary *socialNetworkMapping = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -164,6 +172,9 @@
                     @"missingString", @"missingString",
                     // missing class-mapping -- this key doesn't exist in the json, which is fine
                     [NSDate mappingWithKey:@"missingDate" divisorForSeconds:1], @"missingDate",
+                    
+                    @"desc", @"description",
+
                     nil];
 
     self.object = [JTUserTest objectFromJSONObject:json mapping:mapping];
@@ -301,6 +312,16 @@
     
     NSArray *expectedArray2 = [NSArray arrayWithObjects:@"three", @"four", nil];
     STAssertEqualObjects(api2.array, expectedArray2, nil, nil);
+}
+
+- (void)testPreserved {
+    STAssertEqualObjects(self.object.desc, @"Description", nil);
+}
+
+- (void)testReadonly {
+    STAssertNil(self.object.readonly, nil);
+    STAssertNil(self.object.readonlyCopy, nil);
+    STAssertEqualObjects(self.object.privateCopy, @"PrivateCopy", nil);
 }
 
 @end

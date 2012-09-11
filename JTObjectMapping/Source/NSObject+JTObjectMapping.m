@@ -23,7 +23,14 @@
         if (newKey == nil) {
             // We want to auto reference the NSDictionary key corresponding NSObject property key
             // with the same name defined as in the NSObject subclass.
-            if ([[self class] instancesRespondToSelector:NSSelectorFromString(key)]) {
+
+            // We use setter for auto mapping properties to prevent setting
+            // value to readonly properties
+
+            NSString *camelKey = [key stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[key substringToIndex:1] capitalizedString]];
+            NSString *setter = [NSString stringWithFormat:@"set%@:", camelKey];
+
+            if ([[self class] instancesRespondToSelector:NSSelectorFromString(setter)]) {
                 newKey = key;
             }
         }

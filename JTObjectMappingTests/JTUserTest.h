@@ -42,4 +42,9 @@
 @property (nonatomic, retain) NSDate *nullDate;
 @property (nonatomic, retain) JTSocialNetworkTest *nullChild;
 
+@property (nonatomic, copy) NSString *desc;
+@property (nonatomic, readonly) NSString *readonly;
+@property (nonatomic, readonly, copy) NSString *readonlyCopy;
+@property (nonatomic, readonly, copy) NSString *privateCopy;
+
 @end
