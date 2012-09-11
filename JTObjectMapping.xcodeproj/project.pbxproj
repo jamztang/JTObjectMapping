@@ -259,6 +259,9 @@
 /* Begin PBXProject section */
 		1A7E71B81415F96700AE157A /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+			};
 			buildConfigurationList = 1A7E71BB1415F96700AE157A /* Build configuration list for PBXProject "JTObjectMapping" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -443,6 +446,7 @@
 					"$(inherited)",
 					JTOBJECTMAPPING_SHOW_LOG,
 				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "JTObjectMapping/JTObjectMapping-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,6 +459,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "JTObjectMapping/JTObjectMapping-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -472,6 +477,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "JTObjectMappingTests/JTObjectMappingTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -489,6 +495,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JTObjectMapping/JTObjectMapping-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "JTObjectMappingTests/JTObjectMappingTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
