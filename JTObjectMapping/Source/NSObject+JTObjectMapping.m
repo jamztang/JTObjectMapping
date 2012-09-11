@@ -16,7 +16,7 @@
 
 - (void)setValueFromDictionary:(NSDictionary *)dict mapping:(NSDictionary *)mapping {
     
-    __block NSMutableDictionary *notMapped = [mapping mutableCopy];
+    NSMutableDictionary *notMapped = [mapping mutableCopy];
 
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         id newKey = [mapping objectForKey:key];
@@ -116,7 +116,6 @@
     }];
 #endif
 
-    [notMapped release];
 }
 
 
@@ -130,7 +129,7 @@
 
     if ([object isKindOfClass:[NSDictionary class]]) {
         // the json object is a dict -- create a new dict with the objects we can map from its contents
-        returnObject = [[[[self class] alloc] init] autorelease];
+        returnObject = [[[self class] alloc] init];
         [returnObject setValueFromDictionary:(NSDictionary *)object mapping:mapping];
     } else if ([object isKindOfClass:[NSArray class]]) {
         // the json object is an array -- create a new array with the objects we can map from its contents

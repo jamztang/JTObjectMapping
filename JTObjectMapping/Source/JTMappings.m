@@ -11,9 +11,9 @@
 
 @interface JTMappings : NSObject <JTValidMappingKey>
 
-@property (nonatomic, retain) NSString *key;
-@property (nonatomic, retain) NSMutableDictionary *mapping;
-@property (nonatomic, assign) Class targetClass;
+@property (nonatomic, strong) NSString *key;
+@property (nonatomic, strong) NSMutableDictionary *mapping;
+@property (nonatomic, unsafe_unretained) Class targetClass;
 
 + (id <JTValidMappingKey>)mappingWithKey:(NSString *)aKey
                              targetClass:(Class)aClass
@@ -29,14 +29,11 @@
     obj.key         = aKey;
     obj.mapping     = [aMapping mutableCopy];
     obj.targetClass = aClass;
-    return [obj autorelease];
+    return obj;
 }
 
 - (void)dealloc {
-    self.key = nil;
-    self.mapping = nil;
     self.targetClass = nil;
-    [super dealloc];
 }
 
 - (BOOL)transformValue:(NSObject *)oldValue

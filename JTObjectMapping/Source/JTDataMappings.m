@@ -31,14 +31,10 @@
     dataMapping.stringEncoding = stringEncoding;
     dataMapping.key = key;
     dataMapping.allowLossy = lossy;
-    return [dataMapping autorelease];
+    return dataMapping;
 }
 
 
-- (void)dealloc {
-    self.key = nil;
-    [super dealloc];
-}
 
 - (BOOL)transformValue:(NSObject *)oldValue
                toValue:(NSObject **)newValue

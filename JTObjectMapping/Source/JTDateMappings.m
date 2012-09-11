@@ -38,14 +38,9 @@
     JTDateMappings *dateMappings = [[JTDateMappings alloc] init];
     dateMappings.dateFormatString = dateFormatString;
     dateMappings.key              = key;
-    return [dateMappings autorelease];
+    return dateMappings;
 }
 
-- (void)dealloc {
-    self.dateFormatString = nil;
-    self.key = nil;
-    [super dealloc];
-}
 
 - (BOOL)transformValue:(NSObject *)oldValue
                toValue:(NSObject **)newValue
@@ -57,7 +52,6 @@
         [formatter setDateFormat:self.dateFormatString];
 
         NSDate *date = [formatter dateFromString:(NSString *)oldValue];
-        [formatter release];
 
         *newValue = date;
         *key = self.key;
@@ -86,13 +80,9 @@
     JTDateEpochMappings *epochMapping = [[JTDateEpochMappings alloc] init];
     epochMapping.key = key;
     epochMapping.divisorForSeconds = divisorForSeconds;
-    return [epochMapping autorelease];
+    return epochMapping;
 }
 
-- (void)dealloc {
-    self.key = nil;
-    [super dealloc];
-}
 
 - (BOOL)transformValue:(NSObject *)oldValue
                toValue:(NSObject **)newValue

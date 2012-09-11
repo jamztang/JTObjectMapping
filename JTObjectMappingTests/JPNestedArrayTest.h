@@ -10,6 +10,6 @@
 
 @interface JPNestedArrayTest : NSObject
 
-@property (nonatomic, retain) NSArray *array;
+@property (nonatomic, strong) NSArray *array;
 
 @end
