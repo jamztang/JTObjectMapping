@@ -27,6 +27,10 @@ Suppose this is a JSON User object response represented in NSDictionary after pa
     );
     "p_name" = Bob;
     "p_title" = Manager;
+    "social_networks" = {
+        "twitter" = "@mystcolor";
+        "facebook" = "yourFacebookID";
+    }
 }
 </pre>
 
@@ -44,6 +48,12 @@ Get ready with your JSON use **[NSObject objectFromJSONObject:json mapping:mappi
 
 Define necessary mappings, from a dictionary key to a property keyPath.
 
+    // Define the mapping of a nested custom object - JTSocialNetworkTest
+    NSDictionary *socialNetworkMapping = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               @"twitterID", @"twitter",
+                                               @"facebookID", @"facebook",
+                                           nil];
+
     NSDictionary *mapping = [NSDictionary dictionaryWithObjectsAndKeys:
                     @"name", @"p_name",
                     @"title", @"p_title",
@@ -51,10 +61,24 @@ Define necessary mappings, from a dictionary key to a property keyPath.
                     @"childs", @"p_childs",                    
                     [NSDate mappingWithKey:@"createDate"
                           dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"create_date",
+                    [JTSocialNetworkTest mappingWithKey:@"socialNetwork"
+                                                mapping:socialNetworkMapping], @"social_networks",
                     nil];
 
 
 Of course you need to define your own User object with corresponding @synthesize properties, and thats all for what you need.
+
+
+    // JTSocialNetworkTest.h
+
+    @interface JTSocialNetworkTest
+    @property (nonatomic, copy) NSString *twitter;
+    @property (nonatomic, copy) NSString *facebook;
+    @end
+
+    // JTSocialNetworkTest.m
+    @implementation
+    @end
 
     // JTUserTest.h
     
@@ -63,8 +87,9 @@ Of course you need to define your own User object with corresponding @synthesize
     @property (nonatomic, copy) NSString *name;
     @property (nonatomic, copy) NSString *title;
     @property (nonatomic, copy) NSNumber *age;
-    @property (nonatomic, retain) NSDate *createDate;
-    @property (nonatomic, retain) NSArray *childs;
+    @property (nonatomic, strong) NSDate *createDate;
+    @property (nonatomic, strong) NSArray *childs;
+    @property (nonatomic, strong) JTSocialNetworkTest *socialNetwork;
     
     @end
     
@@ -72,10 +97,6 @@ Of course you need to define your own User object with corresponding @synthesize
     #import "JTUserTest.h"
     
     @implementation JTUserTest
-    @synthesize name, title, age;
-    @synthesize createDate;
-    @synthesize childs;
-    
     @end
 
 For more detailed usage, see **JTObjectMappingTests.m**, will be adding more detailed description soon.
