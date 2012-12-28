@@ -200,7 +200,7 @@
     return [JTDateFormatterMappings mappingWithKey:key dateFormatter:dateFormatter];
 }
 
-+ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(float)divisorForSeconds {
     return [JTDateEpochMappings mappingWithKey:key divisorForSeconds:divisorForSeconds];
 }
 

@@ -18,6 +18,6 @@
 + (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatter:(NSDateFormatter *)dateFormatter;
 
 // Handly method for + [JTDateMappings mappingWithKey:divisorForSeconds:]
-+ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds;
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(float)divisorForSeconds;
 
 @end
