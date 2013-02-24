@@ -19,6 +19,18 @@
 @end
 
 
+// For dates using a date formatter
+
+@interface JTDateFormatterMappings : NSObject <JTValidMappingKey>
+
+@property (nonatomic, copy) NSString *key;
+@property (nonatomic, copy) NSDateFormatter *dateFormatter;
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatter:(NSDateFormatter *)dateFormatter;
+
+@end
+
+
 // For epoch dates in (some fraction) of seconds
 
 @interface JTDateEpochMappings : NSObject <JTValidMappingKey>
@@ -72,6 +84,50 @@
         return YES;
     }
 
+    return NO;
+}
+
+@end
+
+
+
+@implementation JTDateFormatterMappings
+@synthesize dateFormatter = _dateFormatter, key = _key;
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatter:(NSDateFormatter *)dateFormatter {
+    JTDateFormatterMappings *dateMappings = [[JTDateFormatterMappings alloc] init];
+    dateMappings.dateFormatter = dateFormatter;
+    dateMappings.key           = key;
+    return [dateMappings autorelease];
+}
+
+- (void)dealloc {
+    self.dateFormatter = nil;
+    self.key = nil;
+    [super dealloc];
+}
+
+- (BOOL)transformValue:(NSObject *)oldValue
+               toValue:(NSObject **)newValue
+                forKey:(NSString **)key {
+    
+    if ([oldValue isKindOfClass:[NSString class]]) {
+        
+        NSDate *date = [self.dateFormatter dateFromString:(NSString *)oldValue];
+        
+        *newValue = date;
+        *key = self.key;
+        
+        return YES;
+        
+    } else if ([oldValue isKindOfClass:[NSNull class]]) {
+        
+        *newValue = nil;
+        *key      = self.key;
+        
+        return YES;
+    }
+    
     return NO;
 }
 
@@ -140,7 +196,11 @@
     return [JTDateMappings mappingWithKey:key dateFormatString:dateFormatString];
 }
 
-+ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds {
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatter:(NSDateFormatter *)dateFormatter {
+    return [JTDateFormatterMappings mappingWithKey:key dateFormatter:dateFormatter];
+}
+
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(float)divisorForSeconds {
     return [JTDateEpochMappings mappingWithKey:key divisorForSeconds:divisorForSeconds];
 }
 

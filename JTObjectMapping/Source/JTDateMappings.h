@@ -14,7 +14,10 @@
 // Handly method for + [JTDateMappings mappingWithKey:dateFormatString:]
 + (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString;
 
+// Handly method for + [JTDateMappings mappingWithKey:dateFormatter:]
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatter:(NSDateFormatter *)dateFormatter;
+
 // Handly method for + [JTDateMappings mappingWithKey:divisorForSeconds:]
-+ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(CGFloat)divisorForSeconds;
++ (id <JTValidMappingKey>)mappingWithKey:(NSString *)key divisorForSeconds:(float)divisorForSeconds;
 
 @end
