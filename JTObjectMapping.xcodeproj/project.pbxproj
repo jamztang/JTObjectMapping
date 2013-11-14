@@ -33,6 +33,7 @@
 		1A7E720B141605B300AE157A /* JTMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E720A141605B300AE157A /* JTMappings.m */; };
 		1A7E720E141613C900AE157A /* JTUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E720D141613C800AE157A /* JTUserTest.m */; };
 		1AF05842141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF05841141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m */; };
+		681D24CF1835327A00200A11 /* JTURLMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 681D24CE1835327A00200A11 /* JTURLMappings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		1A7E720D141613C800AE157A /* JTUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTUserTest.m; sourceTree = "<group>"; };
 		1AF05840141D1C9A00CD7E50 /* JTObjectMappingArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTObjectMappingArrayTest.h; sourceTree = "<group>"; };
 		1AF05841141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTObjectMappingArrayTest.m; sourceTree = "<group>"; };
+		681D24CD1835327A00200A11 /* JTURLMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTURLMappings.h; sourceTree = "<group>"; };
+		681D24CE1835327A00200A11 /* JTURLMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTURLMappings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,8 @@
 				1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */,
 				1A2503E115F26AE500490DAD /* JTValidMappingKey.h */,
 				1A2503E215F26AE500490DAD /* JTValidMappingKey.m */,
+				681D24CD1835327A00200A11 /* JTURLMappings.h */,
+				681D24CE1835327A00200A11 /* JTURLMappings.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				1A7E71D61415F96800AE157A /* JTObjectMappingAppDelegate.m in Sources */,
 				1A7E71DC1415F96800AE157A /* JTObjectMappingViewController.m in Sources */,
 				1A7E72021415FA1500AE157A /* NSObject+JTObjectMapping.m in Sources */,
+				681D24CF1835327A00200A11 /* JTURLMappings.m in Sources */,
 				1A7E7208141602C900AE157A /* JTSocialNetworkTest.m in Sources */,
 				1A7E720B141605B300AE157A /* JTMappings.m in Sources */,
 				1A7E720E141613C900AE157A /* JTUserTest.m in Sources */,
