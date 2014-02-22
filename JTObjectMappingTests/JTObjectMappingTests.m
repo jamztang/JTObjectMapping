@@ -17,7 +17,7 @@
 // when the unicode string is mapped with lossy ASCII the elipses character (0x2026) will convert to three periods
 #define DATA_STRING_UNICODE @"elipses are unicode characters…periods are not"
 #define DATA_STRING_ASCII   @"elipses are unicode characters...periods are not"
-
+#define AVATAR_URL @"http://en.gravatar.com/userimage/11332249/d73901242ae1c7e33bcc7c83257ac165.jpg"
 
 @implementation JTObjectMappingTests
 @synthesize json, mapping, object;
@@ -64,6 +64,8 @@
                  DATA_STRING_UNICODE, @"data",
                  // NSData -- the mapping below will specify lossy ascii
                  DATA_STRING_UNICODE, @"dataLossy",
+                 
+                 AVATAR_URL, @"avatarURL",
                  
                  // auto string
                  @"yes", @"autoString",
@@ -150,6 +152,8 @@
                     [NSData mappingWithKey:@"data" usingEncoding:NSUTF8StringEncoding], @"data",
                     // NSData mapping (lossy ascii)
                     [NSData mappingWithKey:@"dataLossy" usingEncoding:NSASCIIStringEncoding allowLossy:YES], @"dataLossy",
+                    
+                    [NSURL mappingWithKey:@"avatarURL"], @"avatarURL",
                     
                     // This specifies a mapping a child object (JTSocialNetwork) and a child dictionary in the json dictionary
                     // (it too uses a map of json keys to its properties, the `socialNetworkMapping` dictionary)
@@ -266,6 +270,12 @@
     STAssertTrue([colors isKindOfClass:[NSSet class]], @"%@ != [NSSet class]", [colors class]);
     STAssertTrue([colors containsObject:@"green"], @"%@ should contain 'green'", colors);
     STAssertTrue([colors containsObject:@"blue"], @"%@ should contain 'blue'", colors);
+}
+
+- (void)testURL {
+    NSURL *url = self.object.avatarURL;
+    STAssertTrue([url isKindOfClass:[NSURL class]], @"%@ != [NSURL class]", [url class]);
+    STAssertTrue([url.absoluteString isEqualToString:AVATAR_URL], @"%@ != %@", url.absoluteString, AVATAR_URL);
 }
 
 - (void)testKeyPath {

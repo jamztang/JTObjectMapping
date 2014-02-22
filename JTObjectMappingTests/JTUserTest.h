@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSData *data;
 @property (nonatomic, retain) NSData *dataLossy;
 @property (nonatomic, retain) NSSet *favoriteColors;
+@property (nonatomic, retain) NSURL *avatarURL;
 
 @property (nonatomic, copy) NSString *hashedString;
 @property (nonatomic, retain) JTUserTest *hashedUser;
