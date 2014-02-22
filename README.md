@@ -104,6 +104,10 @@ For more detailed usage, see **JTObjectMappingTests.m**, will be adding more det
 Update Logs
 -----------
 
+v1.1.1
+- Added URL support, thanks to [@TheSantaClaus][] and adding the test
+  cases nicely.
+
 v1.1
 - Refactored JTObjectMapping. Now extending custom mappings are much more cleaner.
 - Proper keyPath support.
@@ -133,6 +137,7 @@ v1.0.1
 
 [CocoaPods]:https://github.com/CocoaPods/CocoaPods
 [@zcharter]:https://github.com/zcharter
+[@TheSantaClaus]:https://github.com/TheSantaClaus
 
 
 
