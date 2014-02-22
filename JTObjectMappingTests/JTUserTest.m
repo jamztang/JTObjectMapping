@@ -17,6 +17,7 @@
 @synthesize createDate;
 @synthesize childs, users;
 @synthesize autoString, autoArray;
+@synthesize avatarURL;
 //@synthesize autoSocialNetwork;
 @synthesize socialNetwork;
 @synthesize nestedArray;

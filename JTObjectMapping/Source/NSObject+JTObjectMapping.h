@@ -11,6 +11,7 @@
 #import "JTDateMappings.h"
 #import "JTMappings.h"
 #import "JTSetMappings.h"
+#import "JTURLMappings.h"
 
 @protocol JTValidJSONResponse <NSObject>
 @end
@@ -21,6 +22,8 @@
 @interface NSDictionary () <JTValidJSONResponse>
 @end
 
+@interface NSURL () <JTValidJSONResponse>
+@end
 
 
 @interface NSObject (JTObjectMapping)
