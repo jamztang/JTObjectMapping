@@ -135,3 +135,7 @@ v1.0.1
 [@zcharter]:https://github.com/zcharter
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamztang/jtobjectmapping/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
