@@ -55,14 +55,14 @@ Define necessary mappings, from a dictionary key to a property keyPath.
                                            nil];
 
     NSDictionary *mapping = [NSDictionary dictionaryWithObjectsAndKeys:
-                    @"name", @"p_name",
-                    @"title", @"p_title",
-                    @"age", @"p_age",
-                    @"childs", @"p_childs",                    
-                    [NSDate mappingWithKey:@"createDate"
-                          dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"create_date",
-                    [JTSocialNetworkTest mappingWithKey:@"socialNetwork"
-                                                mapping:socialNetworkMapping], @"social_networks",
+                    @"p_name", @"name",
+                    @"p_title", @"title",
+                    @"p_age", @"age",
+                    @"p_childs", @"childs",                    
+                    @"create_date", [NSDate mappingWithKey:@"createDate"
+                                          dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"],
+                    @"social_networks", [JTSocialNetworkTest mappingWithKey:@"socialNetwork"
+                                                                    mapping:socialNetworkMapping]
                     nil];
 
 
