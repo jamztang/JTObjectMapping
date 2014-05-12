@@ -13,6 +13,7 @@
 
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic, copy) NSString *dateFormatString;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 + (id <JTValidMappingKey>)mappingWithKey:(NSString *)key dateFormatString:(NSString *)dateFormatString;
 
@@ -54,6 +55,7 @@
 }
 
 - (void)dealloc {
+    [_dateFormatter release];
     self.dateFormatString = nil;
     self.key = nil;
     [super dealloc];
@@ -62,20 +64,22 @@
 - (BOOL)transformValue:(NSObject *)oldValue
                toValue:(NSObject **)newValue
                 forKey:(NSString **)key {
-
-    if ([oldValue isKindOfClass:[NSString class]]) {
-
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:self.dateFormatString];
-
-        NSDate *date = [formatter dateFromString:(NSString *)oldValue];
-        [formatter release];
-
+    
+    if ([oldValue isKindOfClass:[NSString class]])
+    {
+        if(!_dateFormatter)
+        {
+            self.dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+            [_dateFormatter setDateFormat:self.dateFormatString];
+        }
+        
+        NSDate *date = [_dateFormatter dateFromString:(NSString *)oldValue];
+        
         *newValue = date;
         *key = self.key;
-
+        
         return YES;
-
+        
     } else if ([oldValue isKindOfClass:[NSNull class]]) {
         
         *newValue = nil;
@@ -83,9 +87,10 @@
         
         return YES;
     }
-
+    
     return NO;
 }
+
 
 @end
 
