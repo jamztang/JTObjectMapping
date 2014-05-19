@@ -55,7 +55,7 @@
 }
 
 - (void)dealloc {
-    [_dateFormatter release];
+    self.dateFormatter = nil;
     self.dateFormatString = nil;
     self.key = nil;
     [super dealloc];
@@ -65,15 +65,16 @@
                toValue:(NSObject **)newValue
                 forKey:(NSString **)key {
     
-    if ([oldValue isKindOfClass:[NSString class]])
-    {
-        if(!_dateFormatter)
-        {
+    if ([oldValue isKindOfClass:[NSString class]]) {
+        
+        if (!self.dateFormatter) {
+            
             self.dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-            [_dateFormatter setDateFormat:self.dateFormatString];
+            [self.dateFormatter setDateFormat:self.dateFormatString];
+            
         }
         
-        NSDate *date = [_dateFormatter dateFromString:(NSString *)oldValue];
+        NSDate *date = [self.dateFormatter dateFromString:(NSString *)oldValue];
         
         *newValue = date;
         *key = self.key;
@@ -90,7 +91,6 @@
     
     return NO;
 }
-
 
 @end
 
