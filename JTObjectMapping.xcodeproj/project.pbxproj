@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1197E87D15C6F79C006BC9F0 /* JTSetMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */; };
 		1197E89915C8549A006BC9F0 /* JTDataMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1197E89815C8549A006BC9F0 /* JTDataMappings.m */; };
+		1A1B4C801953D563004ACE90 /* JTObjectMappingTests.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A1B4C7D1953D4C3004ACE90 /* JTObjectMappingTests.json */; };
 		1A23E1D71469B35D002BBB85 /* JPNestedArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */; };
 		1A2503E315F26AE500490DAD /* JTValidMappingKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2503E215F26AE500490DAD /* JTValidMappingKey.m */; };
 		1A5F56C914168CC3007145BC /* JTDateMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F56C814168CC3007145BC /* JTDateMappings.m */; };
@@ -51,6 +52,7 @@
 		1197E87C15C6F79C006BC9F0 /* JTSetMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSetMappings.m; sourceTree = "<group>"; };
 		1197E89715C8549A006BC9F0 /* JTDataMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDataMappings.h; sourceTree = "<group>"; };
 		1197E89815C8549A006BC9F0 /* JTDataMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDataMappings.m; sourceTree = "<group>"; };
+		1A1B4C7D1953D4C3004ACE90 /* JTObjectMappingTests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JTObjectMappingTests.json; sourceTree = "<group>"; };
 		1A23E1D51469B35C002BBB85 /* JPNestedArrayTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNestedArrayTest.h; sourceTree = "<group>"; };
 		1A23E1D61469B35C002BBB85 /* JPNestedArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNestedArrayTest.m; sourceTree = "<group>"; };
 		1A2503E115F26AE500490DAD /* JTValidMappingKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTValidMappingKey.h; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				1A7E71EF1415F96800AE157A /* JTObjectMappingTests-Info.plist */,
 				1A7E71F01415F96800AE157A /* InfoPlist.strings */,
+				1A1B4C7D1953D4C3004ACE90 /* JTObjectMappingTests.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A7E71D01415F96700AE157A /* InfoPlist.strings in Resources */,
+				1A1B4C801953D563004ACE90 /* JTObjectMappingTests.json in Resources */,
 				1A7E71D91415F96800AE157A /* MainWindow.xib in Resources */,
 				1A7E71DF1415F96800AE157A /* JTObjectMappingViewController.xib in Resources */,
 			);

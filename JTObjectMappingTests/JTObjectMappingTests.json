@@ -1,0 +1,44 @@
+{
+    "p_age": 30,
+    "null_date": null,
+    "readonly": "Readonly",
+    "p_users": [{
+                "p_name": "John"
+                }, {
+                "p_name": "Doe"
+                }],
+    "nestedArray": [{
+                    "array": ["one", "two"]
+                    }, {
+                    "array": ["three", "four"]
+                    }],
+    "dataLossy": "elipses are unicode characters…periods are not",
+    "avatarURL": "http:\/\/en.gravatar.com\/userimage\/11332249\/d73901242ae1c7e33bcc7c83257ac165.jpg",
+    "autoString": "yes",
+    "favorite_colors": ["green", "blue"],
+    "privateCopy": "PrivateCopy",
+    "p_name": "Bob",
+    "p_title": "Manager",
+    "p_childs": ["Mary", "James"],
+    "hashed": {
+        "user": {
+            "p_name": "John"
+        },
+        "string": "string"
+    },
+    "eighteenth_birthday": 567993600,
+    "data": "elipses are unicode characters…periods are not",
+    "null_array": null,
+    "null_set": null,
+    "null_number": null,
+    "readonlyCopy": "ReadonlyCopy",
+    "p_null": null,
+    "social_networks": {
+        "facebook": "bob",
+        "twitter": "@bob"
+    },
+    "null_child": null,
+    "description": "Description",
+    "autoArray": ["Object1", "Object2"],
+    "create_date": "1970-01-01T13:00:00+0000"
+}

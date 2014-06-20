@@ -27,88 +27,11 @@
     [super setUp];
 
     // Set-up code here.
-    self.json = [NSDictionary dictionaryWithObjectsAndKeys:
-                 @"Bob", @"p_name",
-                 @"Manager", @"p_title",
 
-                 [NSNumber numberWithInt:30], @"p_age",
-
-                 [NSArray arrayWithObjects:
-                  @"Mary",
-                  @"James",
-                  nil], @"p_childs",
-
-                 [NSArray arrayWithObjects:
-                  [NSDictionary dictionaryWithObjectsAndKeys:
-                   @"John", @"p_name", nil],
-                  [NSDictionary dictionaryWithObjectsAndKeys:
-                   @"Doe", @"p_name", nil],
-                  nil], @"p_users",
-                 
-                 // This turns into an NSSet
-                 [[NSSet setWithObjects:@"blue", @"green", nil] allObjects], @"favorite_colors",
-                 
-                 // Setup hash for testing keypath
-                 [NSDictionary dictionaryWithObjectsAndKeys:
-                  @"string", @"string",
-                  [NSDictionary dictionaryWithObjectsAndKeys:
-                   @"John", @"p_name", nil], @"user",
-                  nil], @"hashed",
-
-                 @"1970-01-01T13:00:00+0000", @"create_date",
-                 
-                 // eighteenth birthday in seconds since the epoch
-                 [NSNumber numberWithInt:EIGHTEEN_YEARS_IN_SECONDS], @"eighteenth_birthday",
-                 
-                 // NSData -- the mapping below will specify lossless utf8
-                 DATA_STRING_UNICODE, @"data",
-                 // NSData -- the mapping below will specify lossy ascii
-                 DATA_STRING_UNICODE, @"dataLossy",
-                 
-                 AVATAR_URL, @"avatarURL",
-                 
-                 // auto string
-                 @"yes", @"autoString",
-                 [NSArray arrayWithObjects:
-                  @"Object1",
-                  @"Object2",
-                  nil], @"autoArray",
-
-//                 [NSDictionary dictionaryWithObjectsAndKeys:
-//                  @"@bob", @"twitter",
-//                  @"bob", @"facebook",
-//                  nil], @"autoSocialNetwork",
-
-                 [NSDictionary dictionaryWithObjectsAndKeys:
-                  @"@bob", @"twitter",
-                  @"bob", @"facebook",
-                  nil], @"social_networks",
-                 
-                 
-                 [NSArray arrayWithObjects:
-                  [NSDictionary dictionaryWithObjectsAndKeys:
-                   [NSArray arrayWithObjects:@"one", @"two", nil], @"array", nil],
-                  [NSDictionary dictionaryWithObjectsAndKeys:
-                   [NSArray arrayWithObjects:@"three", @"four", nil], @"array", nil],
-                  nil], @"nestedArray",
-
-                 // Sometime [NSNull null] object would be returned from the JSON response
-                 [NSNull null], @"p_null",
-                 [NSNull null], @"null_date",
-                 [NSNull null], @"null_child",
-                 [NSNull null], @"null_array",
-                 [NSNull null], @"null_set",
-                 [NSNull null], @"null_number",
-
-                 // Test preserved keywords
-                 @"Description", @"description",
-
-                 // Test readonly properties
-                 @"Readonly", @"readonly",
-                 @"ReadonlyCopy", @"readonlyCopy",
-                 @"PrivateCopy", @"privateCopy",
-
-                 nil];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"JTObjectMappingTests" ofType:@"json"];
+    self.json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:jsonPath]
+                                                options:0
+                                                  error:NULL];
 
     NSDictionary *socialNetworkMapping = [NSDictionary dictionaryWithObjectsAndKeys:
                                           @"twitterID", @"twitter",
