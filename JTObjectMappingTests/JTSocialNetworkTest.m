@@ -9,6 +9,5 @@
 #import "JTSocialNetworkTest.h"
 
 @implementation JTSocialNetworkTest
-@synthesize twitterID, facebookID;
 
 @end

@@ -9,5 +9,4 @@
 #import "JPNestedArrayTest.h"
 
 @implementation JPNestedArrayTest
-@synthesize array;
 @end
