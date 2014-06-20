@@ -12,6 +12,34 @@
 #import <objc/runtime.h>
 #import "JTValidMappingKey.h"
 
+// http://stackoverflow.com/questions/1918972/camelcase-to-underscores-and-back-in-objective-c
+static inline NSString *JTUnderscoresToCamelCase(NSString *underscores) {
+    NSMutableString *output = [NSMutableString string];
+    BOOL makeNextCharacterUpperCase = NO;
+    for (NSInteger idx = 0; idx < [underscores length]; idx += 1) {
+        unichar c = [underscores characterAtIndex:idx];
+        if (c == '_') {
+            makeNextCharacterUpperCase = YES;
+        } else if (makeNextCharacterUpperCase) {
+            [output appendString:[[NSString stringWithCharacters:&c length:1] uppercaseString]];
+            makeNextCharacterUpperCase = NO;
+        } else {
+            [output appendFormat:@"%C", c];
+        }
+    }
+    return output;
+}
+
+static inline NSString *JTCamelCaseString(NSString *string) {
+    return [string stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[string substringToIndex:1] capitalizedString]];
+}
+
+static inline NSString *JTGetterToSetter(NSString *keyPath) {
+    NSString *setter = [NSString stringWithFormat:@"set%@:", JTCamelCaseString(keyPath)];
+    return setter;
+}
+
+
 @implementation NSObject (JTObjectMapping)
 
 - (void)setValueFromDictionary:(NSDictionary *)dict mapping:(NSDictionary *)mapping {
@@ -27,11 +55,10 @@
             // We use setter for auto mapping properties to prevent setting
             // value to readonly properties
 
-            NSString *camelKey = [key stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[key substringToIndex:1] capitalizedString]];
-            NSString *setter = [NSString stringWithFormat:@"set%@:", camelKey];
-
-            if ([[self class] instancesRespondToSelector:NSSelectorFromString(setter)]) {
+            if ([self respondsToSelector:NSSelectorFromString(JTGetterToSetter(key))]) {
                 newKey = key;
+            } else if ([self respondsToSelector:NSSelectorFromString(JTGetterToSetter(JTUnderscoresToCamelCase(key)))]) {
+                newKey = JTUnderscoresToCamelCase(key);
             }
         }
 

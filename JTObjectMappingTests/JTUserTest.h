@@ -28,6 +28,7 @@
 @property (nonatomic, retain) JTUserTest *hashedUser;
 
 @property (nonatomic, copy) NSString *autoString;
+@property (nonatomic, copy) NSNumber *autoUnderscoreToCamelCase;
 @property (nonatomic, retain) NSArray *autoArray;
 @property (nonatomic, retain) NSArray *nestedArray;
 @property (nonatomic, retain) NSArray *missingString;

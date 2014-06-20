@@ -215,15 +215,23 @@
     STAssertNil(self.object.missingDate, @"missingDate should be nil");
 }
 
+- (void)testAutoMapping {
+    STAssertEqualObjects(self.object.autoString, @"yes", nil, nil);
+}
 
-//- (void)testAutoMapping {
-//    STAssertEqualObjects(self.object.autoString, @"yes", nil, nil);
-//    NSArray *array = [NSArray arrayWithObjects:
-//                      @"Object1",
-//                      @"Object2",
-//                      nil];
-//    STAssertEqualObjects(self.object.autoArray, array, nil, nil);
-//    
+- (void)testAutoArray {
+    NSArray *array = [NSArray arrayWithObjects:
+                      @"Object1",
+                      @"Object2",
+                      nil];
+    STAssertEqualObjects(self.object.autoArray, array, nil, nil);
+}
+
+- (void)testAutoUnderscoreToCamelCase {
+    STAssertEqualObjects(self.object.autoUnderscoreToCamelCase, @1, nil, nil);
+}
+
+//- (void)testAutoMapObject {
 //    JTSocialNetworkTest *network = [[JTSocialNetworkTest alloc] init];
 //    network.twitterID = @"@bob";
 //    network.facebookID = @"bob";

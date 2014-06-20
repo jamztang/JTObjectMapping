@@ -15,6 +15,7 @@
     "dataLossy": "elipses are unicode characters…periods are not",
     "avatarURL": "http:\/\/en.gravatar.com\/userimage\/11332249\/d73901242ae1c7e33bcc7c83257ac165.jpg",
     "autoString": "yes",
+    "auto_underscore_to_camel_case": 1,
     "favorite_colors": ["green", "blue"],
     "privateCopy": "PrivateCopy",
     "p_name": "Bob",
