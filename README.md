@@ -104,6 +104,9 @@ For more detailed usage, see **JTObjectMappingTests.m**, will be adding more det
 Update Logs
 -----------
 
+v1.1.2
+- Added auto mapping from underscores to CamelCases (e.g. full\_name -> fullName)
+
 v1.1.1
 - Added URL support, thanks to [@TheSantaClaus][] and adding the test
   cases nicely.
