@@ -146,30 +146,50 @@ static inline NSString *JTGetterToSetter(NSString *keyPath) {
     [notMapped release];
 }
 
-
 /*
  Instantiate and populate the properties of this class with the JTValidJSONResponse (NSDictionary).
  If this is a dictionary or array, recurse into the json dict and create the corresponding child objects.
  */
 + (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSMutableDictionary *)mapping {
+    return [[self class] objectFromJSONObject:object mapping:mapping inContext:nil];
+}
+
+/*
+ Instantiate and populate the properties of this class with the JTValidJSONResponse (NSDictionary).
+ If this is a dictionary or array, recurse into the json dict and create the corresponding child objects.
+ 
+ @param object JSON data to be mapped into apps objects
+ @param mapping mapping from JSON keys to object keys
+ @param context Optional. If target class is not a NSManagedObject subclass you can pass nil. Otherwise, pass context for object to be inserted in.
+ */
++ (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSMutableDictionary *)mapping inContext:(NSManagedObjectContext *) context {
     id returnObject = nil;
-
-
+    
+    
     if ([object isKindOfClass:[NSDictionary class]]) {
         // the json object is a dict -- create a new dict with the objects we can map from its contents
-        returnObject = [[[[self class] alloc] init] autorelease];
+        
+        // if target object is NSManagedObjectSubclass - create it with initWithEntity
+        if ([[self class] isSubclassOfClass:[NSManagedObject class]]) {
+            // NSManagedObject subsclasses can be instantiated only with context
+            if (!context) return nil;
+            NSEntityDescription *entity = [NSEntityDescription entityForName:[[self class] description] inManagedObjectContext:context];
+            returnObject = [[[[self class] alloc] initWithEntity:entity insertIntoManagedObjectContext:context] autorelease];
+        } else {
+            returnObject = [[[[self class] alloc] init] autorelease];
+        }
         [returnObject setValueFromDictionary:(NSDictionary *)object mapping:mapping];
     } else if ([object isKindOfClass:[NSArray class]]) {
         // the json object is an array -- create a new array with the objects we can map from its contents
         NSMutableArray *array = [NSMutableArray array];
         for (NSObject *dict in (NSArray *)object) {
             NSParameterAssert([dict isKindOfClass:[NSDictionary class]]);
-            NSObject *newObj = [[self class] objectFromJSONObject:(NSDictionary *)dict mapping:mapping];
+            NSObject *newObj = [[self class] objectFromJSONObject:(NSDictionary *)dict mapping:mapping inContext:context];
             [array addObject:newObj];
         }
         returnObject = [NSArray arrayWithArray:array];
     }
-
+    
     // let objects do post-mapping validation, etc
     // (it's safe to call without checking respondsToSelector:, because we have an no-op method defined in this category)
     [returnObject didMapObjectFromJSON:object];
