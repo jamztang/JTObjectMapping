@@ -28,7 +28,7 @@
     JTMappings *obj = [[JTMappings alloc] init];
     obj.key         = aKey;
     obj.mapping     = [aMapping mutableCopy];
-    obj.targetClass = aClass;
+    obj.targetClass = [aClass copy];
     return [obj autorelease];
 }
 
