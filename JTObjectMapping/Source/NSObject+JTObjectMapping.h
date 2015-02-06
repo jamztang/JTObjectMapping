@@ -6,7 +6,12 @@
  * file that was distributed with this source code.
  */
 
-#import <UIKit/UIKit.h>
+#if !TARGET_OS_IPHONE
+    #import <Foundation/Foundation.h>
+#else
+    #import <UIKit/UIKit.h>
+#endif
+
 #import "JTDataMappings.h"
 #import "JTDateMappings.h"
 #import "JTMappings.h"

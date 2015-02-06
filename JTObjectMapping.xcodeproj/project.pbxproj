@@ -35,6 +35,7 @@
 		1A7E720E141613C900AE157A /* JTUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E720D141613C800AE157A /* JTUserTest.m */; };
 		1AF05842141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF05841141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m */; };
 		681D24CF1835327A00200A11 /* JTURLMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 681D24CE1835327A00200A11 /* JTURLMappings.m */; };
+		8E10B4AC1A7C67B700966B9E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E10B4AB1A7C67B700966B9E /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		1AF05841141D1C9A00CD7E50 /* JTObjectMappingArrayTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTObjectMappingArrayTest.m; sourceTree = "<group>"; };
 		681D24CD1835327A00200A11 /* JTURLMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTURLMappings.h; sourceTree = "<group>"; };
 		681D24CE1835327A00200A11 /* JTURLMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTURLMappings.m; sourceTree = "<group>"; };
+		8E10B4AB1A7C67B700966B9E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		1A7E71B61415F96700AE157A = {
 			isa = PBXGroup;
 			children = (
+				8E10B4AB1A7C67B700966B9E /* Default-568h@2x.png */,
 				1A7E71CB1415F96700AE157A /* JTObjectMapping */,
 				1A7E71ED1415F96800AE157A /* JTObjectMappingTests */,
 				1A7E71C41415F96700AE157A /* Frameworks */,
@@ -260,7 +263,7 @@
 			name = JTObjectMappingTests;
 			productName = JTObjectMappingTests;
 			productReference = 1A7E71E51415F96800AE157A /* JTObjectMappingTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -268,7 +271,7 @@
 		1A7E71B81415F96700AE157A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 1A7E71BB1415F96700AE157A /* Build configuration list for PBXProject "JTObjectMapping" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -296,6 +299,7 @@
 				1A7E71D01415F96700AE157A /* InfoPlist.strings in Resources */,
 				1A1B4C801953D563004ACE90 /* JTObjectMappingTests.json in Resources */,
 				1A7E71D91415F96800AE157A /* MainWindow.xib in Resources */,
+				8E10B4AC1A7C67B700966B9E /* Default-568h@2x.png in Resources */,
 				1A7E71DF1415F96800AE157A /* JTObjectMappingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,7 +411,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -423,6 +426,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -431,7 +435,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
