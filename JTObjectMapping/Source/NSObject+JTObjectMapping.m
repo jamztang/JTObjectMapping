@@ -209,7 +209,21 @@ static inline NSString *JTGetterToSetter(NSString *keyPath) {
 @implementation NSNull (JTValidMappingValue)
 
 - (void)configureSelfToObject:(NSObject *)object forKey:(NSString *)key {
-    [object setValue:nil forKey:key];
+    unsigned int propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList([object class], &propertyCount);
+    
+    for (unsigned int i = 0; i < propertyCount; ++i) {
+        objc_property_t property = properties[i];
+        NSString *strName = [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
+        if ([strName isEqualToString:key]) 
+            NSString *strAttributes = [NSString stringWithCString:property_getAttributes(property) encoding:NSUTF8StringEncoding];
+            if ([strAttributes hasPrefix:@"T@"]) {
+                [object setValue:nil forKey:key];
+            } else {
+                [object setValue:@0 forKey:key];
+            }
+        }
+    }
 }
 
 @end
