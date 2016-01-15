@@ -27,7 +27,7 @@
 + (id <JTValidMappingKey>)mappingWithKey:(NSString *)aKey targetClass:(Class)aClass mapping:(NSMutableDictionary *)aMapping {
     JTMappings *obj = [[JTMappings alloc] init];
     obj.key         = aKey;
-    obj.mapping     = [aMapping mutableCopy];
+    obj.mapping     = [[aMapping mutableCopy] autorelease];
     obj.targetClass = aClass;
     return [obj autorelease];
 }
