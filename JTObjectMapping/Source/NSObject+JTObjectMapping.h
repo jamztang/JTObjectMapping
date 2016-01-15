@@ -32,6 +32,8 @@
 
 + (id)objectFromJSONObject:(id <JTValidJSONResponse>)object mapping:(NSDictionary *)mapping;
 
++ (id)objectFromJSONObject:(id<JTValidJSONResponse>)object mapping:(NSMutableDictionary *)mapping inContext:(NSManagedObjectContext *) context;
+
 @end
 
 
