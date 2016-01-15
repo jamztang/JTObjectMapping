@@ -6,7 +6,8 @@ Pod::Spec.new do |s|
   s.homepage = 'http://github.com/jamztang/JTObjectMapping'
   s.author   = { 'James Tang' => 'j@jamztang.com' }
   s.source   = { :git => 'https://github.com/jamztang/JTObjectMapping.git', :tag => s.version.to_s }
-  s.platform = :ios
+  s.ios.deployment_target = '6.0'
+  s.osx.deployment_target = '10.8'
   s.source_files = 'JTObjectMapping/Source/*.{h,m}'
   s.requires_arc = false
 end
